@@ -125,7 +125,13 @@ async fn maybe_inject_search_context(
 
     info!("Injecting search_context into third-party prompt enhancement");
     let manager = IndexManager::new(Arc::new(config.clone()), project_root.to_path_buf())?;
-    let search_context = manager.search_context(original_prompt).await?;
+    // 使用默认的搜索过滤选项（SearchFilterOptions::default()）来执行 codebase 上下文检索
+    let search_context = manager
+        .search_context(
+            original_prompt,
+            &crate::search_filter::SearchFilterOptions::default(),
+        )
+        .await?;
     let normalized = normalize_search_context(&search_context);
 
     Ok(build_prompt_with_search_context(
