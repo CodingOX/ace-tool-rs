@@ -20,7 +20,7 @@ fn create_test_config() -> Arc<Config> {
 #[test]
 fn test_search_context_tool_def() {
     assert_eq!(SEARCH_CONTEXT_TOOL.name, "search_context");
-    assert!(SEARCH_CONTEXT_TOOL.description.contains("primary tool"));
+    assert!(SEARCH_CONTEXT_TOOL.description.contains("FIRST CHOICE"));
     assert!(SEARCH_CONTEXT_TOOL.description.contains("codebase"));
 }
 
