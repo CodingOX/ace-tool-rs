@@ -13,10 +13,10 @@ This is a **shim package** that automatically downloads the appropriate pre-buil
 
 ```bash
 # Run directly with npx (no installation needed)
-npx ace-tool-rs --base-url <API_URL> --token <AUTH_TOKEN>
+npx @alistar.max/ace-tool-rs --base-url <API_URL> --token <AUTH_TOKEN>
 
 # Or install globally
-npm install -g ace-tool-rs
+npm install -g @alistar.max/ace-tool-rs
 ace-tool-rs --base-url <API_URL> --token <AUTH_TOKEN>
 ```
 
@@ -67,7 +67,7 @@ If automatic download fails, you can:
 3. **Set GITHUB_TOKEN**: If you're hitting GitHub API rate limits:
    ```bash
    export GITHUB_TOKEN=your_github_token
-   npx ace-tool-rs --base-url <API_URL> --token <AUTH_TOKEN>
+   npx @alistar.max/ace-tool-rs --base-url <API_URL> --token <AUTH_TOKEN>
    ```
 
 ### Binary Not Found After Extraction

@@ -1,7 +1,7 @@
 {
   "name": "@alistar.max/ace-tool-rs",
   "version": "0.2.0",
-  "description": "MCP server for codebase indexing, semantic search, and prompt enhancement",
+  "description": "CLI tool and MCP server for codebase indexing, semantic search, and prompt enhancement",
   "publishConfig": {
     "access": "public"
   },

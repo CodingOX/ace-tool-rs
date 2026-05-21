@@ -2,7 +2,7 @@
   "name": "ace-tool-rs",
   "version": "0.2.0",
   "private": true,
-  "description": "MCP server for codebase indexing, semantic search, and prompt enhancement",
+  "description": "CLI tool and MCP server for codebase indexing, semantic search, and prompt enhancement",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/CodingOX/ace-tool-rs.git"

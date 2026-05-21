@@ -32,7 +32,7 @@ function getBinaryPath() {
     console.error("This may happen if npm failed to install the optional dependency.");
     console.error("");
     console.error("Try reinstalling:");
-    console.error("  npm install ace-tool-rs");
+    console.error("  npm install @alistar.max/ace-tool-rs");
     console.error("");
     console.error("Or install the platform package directly:");
     console.error(`  npm install ${pkgName}`);

@@ -1,30 +1,30 @@
 # ace-tool-rs
 
-MCP server for codebase indexing, semantic search, and prompt enhancement.
+CLI tool and MCP server for codebase indexing, semantic search, and prompt enhancement.
 
 ## Installation
 
 ```bash
 # Install globally
-npm install -g ace-tool-rs
+npm install -g @alistar.max/ace-tool-rs
 
 # Or run directly with npx
-npx ace-tool-rs --help
+npx @alistar.max/ace-tool-rs --help
 ```
 
 ## How It Works
 
-This package uses platform-specific optional dependencies to provide pre-built binaries. When you install `ace-tool-rs`, npm automatically downloads the correct binary for your platform.
+This package uses platform-specific optional dependencies to provide pre-built binaries. When you install `@alistar.max/ace-tool-rs`, npm automatically downloads the correct binary for your platform.
 
 ### Supported Platforms
 
 | Platform | Architecture | Package |
 |----------|--------------|---------|
-| macOS    | x64, ARM64   | `@ace-tool-rs/darwin-universal` |
-| Linux    | x64          | `@ace-tool-rs/linux-x64` |
-| Linux    | ARM64        | `@ace-tool-rs/linux-arm64` |
-| Windows  | x64          | `@ace-tool-rs/win32-x64` |
-| Windows  | ARM64        | `@ace-tool-rs/win32-arm64` |
+| macOS    | x64, ARM64   | `@alistar.max/ace-tool-rs-darwin-universal` |
+| Linux    | x64          | `@alistar.max/ace-tool-rs-linux-x64` |
+| Linux    | ARM64        | `@alistar.max/ace-tool-rs-linux-arm64` |
+| Windows  | x64          | `@alistar.max/ace-tool-rs-win32-x64` |
+| Windows  | ARM64        | `@alistar.max/ace-tool-rs-win32-arm64` |
 
 ## Usage
 
@@ -40,13 +40,13 @@ If the platform-specific package failed to install, you can install it manually:
 
 ```bash
 # For Linux x64
-npm install @ace-tool-rs/linux-x64
+npm install @alistar.max/ace-tool-rs-linux-x64
 
 # For macOS
-npm install @ace-tool-rs/darwin-universal
+npm install @alistar.max/ace-tool-rs-darwin-universal
 
 # For Windows x64
-npm install @ace-tool-rs/win32-x64
+npm install @alistar.max/ace-tool-rs-win32-x64
 ```
 
 ### Alternative installation
