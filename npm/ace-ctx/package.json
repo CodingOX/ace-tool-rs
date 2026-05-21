@@ -1,6 +1,6 @@
 {
   "name": "@alistar.max/ace-ctx",
-  "version": "0.2.3",
+  "version": "0.2.4",
   "description": "CLI tool and MCP server for codebase indexing, semantic search, and prompt enhancement",
   "publishConfig": {
     "access": "public"
@@ -44,10 +44,10 @@
     "arm64"
   ],
   "optionalDependencies": {
-    "@alistar.max/ace-ctx-darwin-universal": "0.2.3",
-    "@alistar.max/ace-ctx-linux-x64": "0.2.3",
-    "@alistar.max/ace-ctx-linux-arm64": "0.2.3",
-    "@alistar.max/ace-ctx-win32-x64": "0.2.3",
-    "@alistar.max/ace-ctx-win32-arm64": "0.2.3"
+    "@alistar.max/ace-ctx-darwin-universal": "0.2.4",
+    "@alistar.max/ace-ctx-linux-x64": "0.2.4",
+    "@alistar.max/ace-ctx-linux-arm64": "0.2.4",
+    "@alistar.max/ace-ctx-win32-x64": "0.2.4",
+    "@alistar.max/ace-ctx-win32-arm64": "0.2.4"
   }
 }

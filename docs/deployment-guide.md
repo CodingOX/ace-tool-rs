@@ -203,7 +203,7 @@ ace-ctx --enhance-prompt "分析项目" --force-xdg-open
 ```toml
 [package]
 name = "ace-ctx"
-version = "0.2.3"
+version = "0.2.4"
 ```
 
 ### 升级版本

@@ -1,6 +1,6 @@
 {
   "name": "@alistar.max/ace-ctx-linux-arm64",
-  "version": "0.2.3",
+  "version": "0.2.4",
   "description": "Platform-specific binary for ace-ctx (Linux ARM64)",
   "license": "GPL-3.0-only OR LicenseRef-Commercial",
   "repository": {

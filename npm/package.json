@@ -1,6 +1,6 @@
 {
   "name": "ace-ctx",
-  "version": "0.2.3",
+  "version": "0.2.4",
   "private": true,
   "description": "CLI tool and MCP server for codebase indexing, semantic search, and prompt enhancement",
   "repository": {
