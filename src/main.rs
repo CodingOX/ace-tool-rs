@@ -84,9 +84,9 @@ struct Args {
     #[arg(long)]
     search: Option<String>,
 
-    /// Exclude document files (md, txt, etc.) from search results
+    /// Include document files (md, txt, etc.) in search results
     #[arg(long, default_value = "false")]
-    exclude_document_files: bool,
+    include_document_files: bool,
 }
 
 #[tokio::main]
@@ -132,7 +132,7 @@ async fn main() -> Result<()> {
 
         let manager = IndexManager::new(config, project_root)?;
         let mut filters = SearchFilterOptions::from_args(&ace_tool::tools::search_context::SearchContextArgs {
-            exclude_document_files: Some(args.exclude_document_files),
+            exclude_document_files: Some(!args.include_document_files),
             ..Default::default()
         });
         filters.compile_globs()?;
@@ -348,13 +348,13 @@ mod tests {
     }
 
     #[test]
-    fn test_cli_exclude_document_files_parsing() {
+    fn test_cli_include_document_files_parsing() {
         // Default should be false
         let args = Args::try_parse_from(["ace-ctx", "--search", "test"]).unwrap();
-        assert!(!args.exclude_document_files);
+        assert!(!args.include_document_files);
 
         // Explicit true
-        let args = Args::try_parse_from(["ace-ctx", "--search", "test", "--exclude-document-files"]).unwrap();
-        assert!(args.exclude_document_files);
+        let args = Args::try_parse_from(["ace-ctx", "--search", "test", "--include-document-files"]).unwrap();
+        assert!(args.include_document_files);
     }
 }

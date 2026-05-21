@@ -1,6 +1,6 @@
 //! Tests for index module
 
-use std::collections::HashMap;
+use std::collections::{HashMap, HashSet};
 use std::fs;
 use std::io::Write;
 use std::path::PathBuf;
@@ -1082,7 +1082,7 @@ fn test_filter_blob_hashes_no_filter() {
     };
 
     // No filter
-    let filter = SearchFilterOptions::default();
+    let filter = ace_tool::search_filter::SearchFilterOptions::new_empty();
     let all_hashes = index.get_filtered_blob_hashes(&filter);
     assert_eq!(all_hashes.len(), 2);
 }
@@ -1313,7 +1313,7 @@ fn test_no_filter_params_returns_all_blobs() {
     };
 
     // 无过滤参数
-    let filter = SearchFilterOptions::default();
+    let filter = SearchFilterOptions::new_empty();
 
     // 验证 is_active() 返回 false
     assert!(!filter.is_active());

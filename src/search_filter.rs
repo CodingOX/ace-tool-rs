@@ -26,7 +26,7 @@ pub const DEFAULT_DOCUMENT_FILENAMES: &[&str] = &[
 ];
 
 /// Search filter options for excluding entries from search results
-#[derive(Debug, Clone, Default)]
+#[derive(Debug, Clone)]
 pub struct SearchFilterOptions {
     /// Whether to exclude document files (md, txt, etc.)
     pub exclude_document_files: bool,
@@ -40,10 +40,43 @@ pub struct SearchFilterOptions {
     compiled_globset: Option<globset::GlobSet>,
 }
 
+impl Default for SearchFilterOptions {
+    fn default() -> Self {
+        let mut exclude_extensions = HashSet::new();
+        let mut exclude_filenames = HashSet::new();
+
+        for ext in DEFAULT_DOCUMENT_EXTENSIONS {
+            exclude_extensions.insert(ext.to_string());
+        }
+        for name in DEFAULT_DOCUMENT_FILENAMES {
+            exclude_filenames.insert(name.to_lowercase());
+        }
+
+        Self {
+            exclude_document_files: true,
+            exclude_extensions,
+            exclude_filenames,
+            exclude_globs: Vec::new(),
+            compiled_globset: None,
+        }
+    }
+}
+
 impl SearchFilterOptions {
+    /// Create an empty SearchFilterOptions with no filtering (exclude_document_files is false)
+    pub fn new_empty() -> Self {
+        Self {
+            exclude_document_files: false,
+            exclude_extensions: HashSet::new(),
+            exclude_filenames: HashSet::new(),
+            exclude_globs: Vec::new(),
+            compiled_globset: None,
+        }
+    }
+
     /// Create filter options from MCP tool arguments
     pub fn from_args(args: &crate::tools::search_context::SearchContextArgs) -> Self {
-        let exclude_document_files = args.exclude_document_files.unwrap_or(false);
+        let exclude_document_files = args.exclude_document_files.unwrap_or(true);
 
         let mut exclude_extensions = HashSet::new();
         let mut exclude_filenames = HashSet::new();
@@ -196,11 +229,11 @@ mod tests {
     #[test]
     fn test_search_filter_options_default() {
         let filter = SearchFilterOptions::default();
-        assert!(!filter.exclude_document_files);
-        assert!(filter.exclude_extensions.is_empty());
-        assert!(filter.exclude_filenames.is_empty());
+        assert!(filter.exclude_document_files);
+        assert!(!filter.exclude_extensions.is_empty());
+        assert!(!filter.exclude_filenames.is_empty());
         assert!(filter.exclude_globs.is_empty());
-        assert!(!filter.is_active());
+        assert!(filter.is_active());
     }
 
     #[test]
@@ -236,8 +269,11 @@ mod tests {
     #[test]
     fn test_should_exclude_by_glob() {
         let mut filter = SearchFilterOptions {
+            exclude_document_files: false,
+            exclude_extensions: HashSet::new(),
+            exclude_filenames: HashSet::new(),
             exclude_globs: vec!["docs/**".to_string(), "**/README*".to_string()],
-            ..Default::default()
+            compiled_globset: None,
         };
         filter.compile_globs().unwrap();
 
@@ -252,8 +288,11 @@ mod tests {
     #[test]
     fn test_ensure_compiled_globs_compiles_on_demand() {
         let mut filter = SearchFilterOptions {
+            exclude_document_files: false,
+            exclude_extensions: HashSet::new(),
+            exclude_filenames: HashSet::new(),
             exclude_globs: vec!["docs/**".to_string()],
-            ..Default::default()
+            compiled_globset: None,
         };
 
         // 未显式 compile 前，glob 规则尚未生效
@@ -327,7 +366,7 @@ mod tests {
         assert!(filter3.is_active());
 
         let filter4 = SearchFilterOptions::default();
-        assert!(!filter4.is_active());
+        assert!(filter4.is_active());
     }
 
     #[test]
