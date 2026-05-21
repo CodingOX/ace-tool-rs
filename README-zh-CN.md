@@ -63,29 +63,87 @@ cargo build --release
 
 ## 使用方法
 
-### 命令行
+本项目最新版本全新加入了对 **CLI（命令行工具）独立运行模式** 的深度支持！这使得它不仅能作为一个标准的 MCP 服务器在后台运行，还能直接作为极速的终端工具被开发者或 AI 智能体调用。
 
+### 💻 核心 CLI 运行模式
+
+配置好您的 `--base-url` 和 `--token` 之后，您可以在终端中直接调用 `ace-tool-rs` 运行以下三种极其强大的独立模式：
+
+#### 1. 终端直接语义检索模式 (Search Mode - 推荐🌟)
+对当前项目代码库进行自然语言检索，直接在终端输出高度匹配的、经过高亮和行号整理的代码切片。AI 智能体非常喜欢这个模式！
 ```bash
-ace-tool-rs --base-url <API_URL> --token <AUTH_TOKEN>
+ace-tool-rs --search "用户登录时是如何连接数据库的？" --base-url <API_URL> --token <AUTH_TOKEN>
 ```
 
-### 参数
+#### 2. 项目代码单次索引模式 (Index-Only Mode)
+解析并扫描当前项目，提取增量变化文件，上传向量索引进行训练，上传完成后**立即安全退出**（不启动任何常驻服务），非常适合集成在 Git Commit Hook 或 CI 自动化部署流程中。
+```bash
+ace-tool-rs --index-only --base-url <API_URL> --token <AUTH_TOKEN>
+```
+
+#### 3. 终端 Prompt 增强模式 (Enhance-Prompt Mode)
+在终端一键快速改写、优化和补充您输入的 Prompt，使其带有完美的本地代码上下文。
+```bash
+ace-tool-rs --enhance-prompt "重构用户认证模块" --base-url <API_URL> --token <AUTH_TOKEN>
+```
+
+---
+
+### 🔑 命令行参数与变量
+
+#### 常用参数表
 
 | 参数 | 描述 |
 |------|------|
 | `--base-url` | 索引服务的 API 基础 URL（使用第三方端点的 `--enhance-prompt` 模式时可选） |
 | `--token` | API 访问的认证令牌（使用第三方端点的 `--enhance-prompt` 模式时可选） |
+| `--search` | **[全新]** 执行一次自然语言语义检索并将匹配的代码切片输出到标准输出，然后立即退出 |
+| `--index-only` | **[全新]** 仅对当前目录建立增量索引并上传，完成后立即退出（不启动 MCP 服务器） |
+| `--enhance-prompt` | **[全新]** 增强输入的提示词并将结果输出到标准输出，然后立即退出 |
+| `--no-webbrowser-enhance-prompt` | 禁用 `enhance_prompt` 时的本地 Web 浏览器交互，直接在终端返回增强结果 |
 | `--transport` | 传输帧格式：`auto`（默认）、`lsp`、`line` |
-| `--upload-timeout` | 覆盖上传超时时间（秒），禁用自适应超时 |
-| `--upload-concurrency` | 覆盖上传并发度，禁用自适应并发 |
-| `--no-adaptive` | 禁用自适应策略，使用静态启发式值 |
-| `--no-webbrowser-enhance-prompt` | 禁用 enhance_prompt 的浏览器交互，直接返回 API 结果 |
+| `--upload-timeout` | 覆盖自适应上传超时时间（秒） |
+| `--upload-concurrency` | 覆盖自适应上传并发度 |
+| `--no-adaptive` | 禁用自适应 AIMD 上传策略，使用静态启发式大小参数 |
 | `--force-xdg-open` | 在 WSL 环境中强制使用 xdg-open 代替 explorer.exe |
-| `--webui-addr` | enhance_prompt Web UI 服务器的绑定地址和端口（如 `127.0.0.1:8754`、`0.0.0.0:3456`）。未指定时自动在 127.0.0.1 上选择可用端口。**警告：** 绑定到非回环地址会将无认证的 Web UI 暴露到网络中 |
-| `--index-only` | 仅索引当前目录并退出（不启动 MCP 服务器） |
-| `--enhance-prompt` | 增强提示词并输出到标准输出，然后退出 |
-| `--max-lines-per-blob` | 每个 blob 块的最大行数（默认：800） |
+| `--webui-addr` | `enhance_prompt` Web UI 服务器的绑定地址和端口（如 `127.0.0.1:8754`） |
+| `--max-lines-per-blob` | 每个 blob 分块的最大行数（默认：800） |
 | `--retrieval-timeout` | 搜索检索超时时间（秒，默认：180） |
+
+#### 环境变量快捷配置
+
+为了避免每次命令行运行都要重复输入繁琐的 `--base-url` 和 `--token`，您可以在系统环境变量中配置它们，`ace-tool-rs` 会自动读取：
+
+```bash
+# macOS/Linux (Zsh/Bash)
+export ACE_BASE_URL="https://api.example.com"
+export ACE_TOKEN="your-token-here"
+
+# 随后您可直接极简运行：
+ace-tool-rs --search "查找用户模块"
+```
+
+---
+
+### 🤖 AI 智能体 Skill 集成 (AI Agent Skill)
+
+如果您正在使用支持引入 `Skill` 技能包的下一代智能体编程框架（如 **Claude Code**、**Antigravity IDE** 等），本项目中已经为您量身存放了一套高度优化、随时随地可直接导入的 AI Agent 专属技能包！
+
+#### 1. 技能包存放路径
+该 Skill 文件存放于项目中的：
+👉 [skills/ace-code-search-expert/SKILL.md](file:///Users/alistar/code-all/ai/ace-tool-rs/skills/ace-code-search-expert/SKILL.md)
+
+#### 2. 它能干什么？
+该 Skill 能够作为智能体的 **“前置上下文收窄管道”**。当用户对智能体发出关于代码库的疑问时，智能体一旦导入此 Skill，便会自动捕获意图，在后台静默调用全局的 `ace-tool-rs --search` CLI 命令，快速对代码库进行精准查找。智能体会把提炼出的 100% 靠谱的代码切片作为精简上下文，再输入大模型进行后续的生成。这极大地：
+* 节省了大量不必要的 Token 消耗和上下文空间。
+* 彻底杜绝了模型大范围检索产生幻觉的弊端。
+
+#### 3. 如何为您的 Agent 导入它？
+1. **安装全局 CLI**：确保您本机的 `PATH` 路径中全局可用 `ace-tool-rs` CLI 工具。
+2. **设置环境变量**：配置系统全局变量 `ACE_BASE_URL` 和 `ACE_TOKEN`。
+3. **导入技能**：将 [skills/ace-code-search-expert/SKILL.md](file:///Users/alistar/code-all/ai/ace-tool-rs/skills/ace-code-search-expert/SKILL.md) 文件的完整路径复制，并导入到您的 AI 智能体工作空间的 Skill 定义目录中即可！
+
+---
 
 ### 环境变量
 

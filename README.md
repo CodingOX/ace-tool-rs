@@ -63,29 +63,87 @@ cargo build --release
 
 ## Usage
 
-### Command Line
+This project now features deep support for a **CLI (Command Line Interface) Standalone Mode**! This allows `ace-tool-rs` to run not only as a standard background MCP server but also as a blazing-fast standalone terminal tool invoked directly by developers or AI agents.
 
+### 💻 Core CLI Standalone Modes
+
+Once your `--base-url` and `--token` are configured, you can run `ace-tool-rs` in three powerful standalone modes directly from your terminal:
+
+#### 1. Standalone Codebase Search Mode (Search Mode - Recommended🌟)
+Perform a natural language query against your codebase. It prints highly relevant code snippets, complete with syntax highlighting and line numbers, directly to stdout. AI agents love this mode!
 ```bash
-ace-tool-rs --base-url <API_URL> --token <AUTH_TOKEN>
+ace-tool-rs --search "How does user login connect to the database?" --base-url <API_URL> --token <AUTH_TOKEN>
 ```
 
-### Arguments
+#### 2. Incremental Indexing Mode (Index-Only Mode)
+Scan the current project directory, extract changes, upload incremental index vectors, and **exit immediately upon completion** without running any long-lived background process. This is ideal for Git Commit Hooks or CI automation pipelines.
+```bash
+ace-tool-rs --index-only --base-url <API_URL> --token <AUTH_TOKEN>
+```
+
+#### 3. In-Terminal Prompt Enhancement Mode (Enhance-Prompt Mode)
+Quickly rewrite, optimize, and enrich your prompt with local codebase context right in the terminal.
+```bash
+ace-tool-rs --enhance-prompt "Refactor user authentication module" --base-url <API_URL> --token <AUTH_TOKEN>
+```
+
+---
+
+### 🔑 Command Line Arguments & Variables
+
+#### Common Arguments Reference
 
 | Argument | Description |
 |----------|-------------|
 | `--base-url` | API base URL for the indexing service (optional for `--enhance-prompt` with third-party endpoints) |
 | `--token` | Authentication token for API access (optional for `--enhance-prompt` with third-party endpoints) |
+| `--search` | **[NEW]** Execute a natural language semantic query, print matched code snippets to stdout, and exit immediately |
+| `--index-only` | **[NEW]** Perform an incremental indexing upload of the current directory, and exit immediately without starting the MCP server |
+| `--enhance-prompt` | **[NEW]** Enhance the input prompt, output the result to stdout, and exit immediately |
+| `--no-webbrowser-enhance-prompt` | Disable local web browser review/interaction for `enhance_prompt`, returning the result directly to the terminal |
 | `--transport` | Transport framing: `auto` (default), `lsp`, `line` |
-| `--upload-timeout` | Override upload timeout in seconds (disables adaptive timeout) |
-| `--upload-concurrency` | Override upload concurrency (disables adaptive concurrency) |
-| `--no-adaptive` | Disable adaptive strategy, use static heuristic values |
-| `--no-webbrowser-enhance-prompt` | Disable web browser interaction for enhance_prompt, return API result directly |
-| `--force-xdg-open` | Force using xdg-open instead of explorer.exe in WSL environment |
-| `--webui-addr` | Bind address and port for the enhance_prompt Web UI server (e.g., `127.0.0.1:8754`, `0.0.0.0:3456`). If not specified, automatically selects an available port on 127.0.0.1. **Warning:** binding to a non-loopback address exposes the unauthenticated Web UI to the network |
-| `--index-only` | Index current directory and exit (no MCP server) |
-| `--enhance-prompt` | Enhance a prompt and output the result to stdout, then exit |
+| `--upload-timeout` | Override the adaptive upload timeout in seconds |
+| `--upload-concurrency` | Override the adaptive upload concurrency |
+| `--no-adaptive` | Disable the adaptive AIMD upload strategy, using static heuristic size parameters instead |
+| `--force-xdg-open` | Force using xdg-open instead of explorer.exe in WSL environments |
+| `--webui-addr` | Bind address and port for the `enhance_prompt` Web UI server (e.g., `127.0.0.1:8754`) |
 | `--max-lines-per-blob` | Maximum lines per blob chunk (default: 800) |
 | `--retrieval-timeout` | Search retrieval timeout in seconds (default: 180) |
+
+#### Environment Variables Quick Config
+
+To avoid typing the verbose `--base-url` and `--token` arguments on every run, you can configure them as system environment variables, which `ace-tool-rs` will auto-detect:
+
+```bash
+# macOS/Linux (Zsh/Bash)
+export ACE_BASE_URL="https://api.example.com"
+export ACE_TOKEN="your-token-here"
+
+# After that, you can run simply:
+ace-tool-rs --search "find user module"
+```
+
+---
+
+### 🤖 AI Agent Skill Integration (AI Agent Skill)
+
+If you are using next-generation agentic coding frameworks or IDEs that support custom `Skills` (such as **Claude Code**, **Antigravity IDE**, etc.), this repository provides a highly optimized, ready-to-use AI Agent Skill out of the box!
+
+#### 1. Skill Location
+The skill definition is stored in the repository at:
+👉 [skills/ace-code-search-expert/SKILL.md](file:///Users/alistar/code-all/ai/ace-tool-rs/skills/ace-code-search-expert/SKILL.md)
+
+#### 2. What does it do?
+This Skill acts as a **"pre-context narrow pipe"** for AI agents. When a user asks an agent questions about the codebase, the agent (if the Skill is imported) will automatically catch the intent, run the `ace-tool-rs --search` CLI in the background, and perform a precise search. The agent then feeds the highly reliable code snippets back as a condensed context, which:
+* Saves a massive amount of Token consumption and context window space.
+* Drastically reduces model hallucination caused by lack of localized code context.
+
+#### 3. How to import it for your AI Agent
+1. **Install the CLI Globally**: Ensure `ace-tool-rs` is globally executable in your shell `PATH`.
+2. **Set Environment Variables**: Configure `ACE_BASE_URL` and `ACE_TOKEN` globally on your machine.
+3. **Import the Skill**: Copy the full path of [skills/ace-code-search-expert/SKILL.md](file:///Users/alistar/code-all/ai/ace-tool-rs/skills/ace-code-search-expert/SKILL.md) and import it into your agent workspace's skill definition directory!
+
+---
 
 ### Environment Variables
 
