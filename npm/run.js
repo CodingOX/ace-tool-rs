@@ -14,7 +14,7 @@ const crypto = require("crypto");
 // so that the Rust binary's stdout (MCP JSON-RPC) is the only thing on stdout.
 
 const PACKAGE_NAME = "ace-tool-rs";
-const REPO_OWNER = "missdeer";
+const REPO_OWNER = "CodingOX";
 const REPO_NAME = "ace-tool-rs";
 const MAX_REDIRECTS = 10;
 const REQUEST_TIMEOUT = 60000; // 60 seconds
@@ -511,7 +511,7 @@ async function downloadAndExtract(cacheDir) {
     console.error("");
     console.error("You can install manually:");
     console.error(
-      "  1. Download from https://github.com/missdeer/ace-tool-rs/releases"
+      "  1. Download from https://github.com/CodingOX/ace-tool-rs/releases"
     );
     console.error(`  2. Place binary at: ${binaryPath}`);
     console.error("");

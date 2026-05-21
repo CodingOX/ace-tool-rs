@@ -2,7 +2,7 @@
 
 set -e
 
-REPO="missdeer/ace-tool-rs"
+REPO="CodingOX/ace-tool-rs"
 INSTALL_DIR="/opt/ace-tool-rs"
 BINARY_NAME="ace-tool-rs"
 
