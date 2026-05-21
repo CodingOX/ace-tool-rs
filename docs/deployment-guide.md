@@ -1,4 +1,4 @@
-# ACE-Tool-RS 编译部署指南
+# ACE-Ctx 编译部署指南
 
 ## 环境要求
 
@@ -10,8 +10,8 @@
 ### 1. 克隆项目
 
 ```bash
-git clone https://github.com/CodingOX/ace-tool-rs.git
-cd ace-tool-rs
+git clone https://github.com/CodingOX/ace-ctx.git
+cd ace-ctx
 ```
 
 ### 2. 编译 Release 版本
@@ -20,7 +20,7 @@ cd ace-tool-rs
 cargo build --release
 ```
 
-编译产物位于：`./target/release/ace-tool-rs`
+编译产物位于：`./target/release/ace-ctx`
 
 ### 3. 运行测试（可选）
 
@@ -35,7 +35,7 @@ cargo test --lib
 
 ```bash
 mkdir -p ~/.local/bin
-install -m 755 ./target/release/ace-tool-rs ~/.local/bin/
+install -m 755 ./target/release/ace-ctx ~/.local/bin/
 
 # 添加到 PATH（如需要）
 echo 'export PATH="$HOME/.local/bin:$PATH"' >> ~/.zshrc
@@ -45,20 +45,20 @@ source ~/.zshrc
 ### 方式二：系统目录
 
 ```bash
-sudo install -m 755 ./target/release/ace-tool-rs /usr/local/bin/
+sudo install -m 755 ./target/release/ace-ctx /usr/local/bin/
 ```
 
 ## 验证安装
 
 ```bash
-ace-tool-rs --help
+ace-ctx --help
 ```
 
 输出应显示：
 ```
 MCP server for codebase indexing and semantic search
 
-Usage: ace-tool-rs [OPTIONS]
+Usage: ace-ctx [OPTIONS]
 
 Options:
       --base-url <BASE_URL>
@@ -77,8 +77,8 @@ Options:
 
 ```toml
 [package]
-name = "ace-tool-rs"
-version = "0.1.15"
+name = "ace-ctx"
+version = "0.2.3"
 ```
 
 ### 升级版本
@@ -99,7 +99,7 @@ export ACE_TOKEN="your-auth-token"
 ### 命令行启动
 
 ```bash
-ace-tool-rs --base-url https://your-api-server.com --token your-token
+ace-ctx --base-url https://your-api-server.com --token your-token
 ```
 
 ### 作为 MCP 服务使用
@@ -109,8 +109,8 @@ ace-tool-rs --base-url https://your-api-server.com --token your-token
 ```json
 {
   "mcpServers": {
-    "ace-tool": {
-      "command": "/path/to/ace-tool-rs",
+    "ace-ctx": {
+      "command": "/path/to/ace-ctx",
       "args": [],
       "env": {
         "ACE_BASE_URL": "https://your-api-server.com",
@@ -130,5 +130,5 @@ ace-tool-rs --base-url https://your-api-server.com --token your-token
 
 ### 运行时找不到命令
 
-1. 确认二进制文件在 PATH 中：`which ace-tool-rs`
-2. 确认文件有执行权限：`ls -la $(which ace-tool-rs)`
+1. 确认二进制文件在 PATH 中：`which ace-ctx`
+2. 确认文件有执行权限：`ls -la $(which ace-ctx)`

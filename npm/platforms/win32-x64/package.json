@@ -1,15 +1,15 @@
 {
-  "name": "@alistar.max/ace-tool-rs-win32-x64",
-  "version": "0.2.0",
-  "description": "Platform-specific binary for ace-tool-rs (Windows x64)",
+  "name": "@alistar.max/ace-ctx-win32-x64",
+  "version": "0.2.3",
+  "description": "Platform-specific binary for ace-ctx (Windows x64)",
   "license": "GPL-3.0-only OR LicenseRef-Commercial",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/CodingOX/ace-tool-rs.git"
+    "url": "git+https://github.com/CodingOX/ace-ctx.git"
   },
   "os": ["win32"],
   "cpu": ["x64"],
-  "files": ["bin/ace-tool-rs.exe"],
+  "files": ["bin/ace-ctx.exe"],
   "preferUnplugged": true,
   "publishConfig": {
     "access": "public"

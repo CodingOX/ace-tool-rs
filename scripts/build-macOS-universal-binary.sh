@@ -12,4 +12,4 @@ fi
 
 env RUSTFLAGS="-C target-cpu=native" cargo build --release
 cargo build --release --target $TARGET
-lipo -create -output ace-tool-rs target/$TARGET/release/ace-tool-rs target/release/ace-tool-rs
+lipo -create -output ace-ctx target/$TARGET/release/ace-ctx target/release/ace-ctx

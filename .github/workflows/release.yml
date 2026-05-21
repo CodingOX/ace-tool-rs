@@ -25,36 +25,36 @@ jobs:
           # Linux x86_64
           - target: x86_64-unknown-linux-musl
             os: ubuntu-latest
-            artifact_name: ace-tool-rs
-            asset_name: ace-tool-rs_Linux_x86_64.tar.gz
+            artifact_name: ace-ctx
+            asset_name: ace-ctx_Linux_x86_64.tar.gz
             universal: false
             cross: false
           # Linux aarch64
           - target: aarch64-unknown-linux-musl
             os: ubuntu-latest
-            artifact_name: ace-tool-rs
-            asset_name: ace-tool-rs_Linux_aarch64.tar.gz
+            artifact_name: ace-ctx
+            asset_name: ace-ctx_Linux_aarch64.tar.gz
             universal: false
             cross: true
           # macOS universal (x86_64 + aarch64)
           - target: universal-apple-darwin
             os: macos-latest
-            artifact_name: ace-tool-rs
-            asset_name: ace-tool-rs_Darwin_universal.tar.gz
+            artifact_name: ace-ctx
+            asset_name: ace-ctx_Darwin_universal.tar.gz
             universal: true
             cross: false
           # Windows x86_64
           - target: x86_64-pc-windows-msvc
             os: windows-latest
-            artifact_name: ace-tool-rs.exe
-            asset_name: ace-tool-rs_Windows_x86_64.zip
+            artifact_name: ace-ctx.exe
+            asset_name: ace-ctx_Windows_x86_64.zip
             universal: false
             cross: false
           # Windows aarch64
           - target: aarch64-pc-windows-msvc
             os: windows-latest
-            artifact_name: ace-tool-rs.exe
-            asset_name: ace-tool-rs_Windows_aarch64.zip
+            artifact_name: ace-ctx.exe
+            asset_name: ace-ctx_Windows_aarch64.zip
             universal: false
             cross: false
 
@@ -213,20 +213,20 @@ jobs:
       matrix:
         include:
           - platform: linux-x64
-            asset: ace-tool-rs_Linux_x86_64.tar.gz
-            binary: ace-tool-rs
+            asset: ace-ctx_Linux_x86_64.tar.gz
+            binary: ace-ctx
           - platform: linux-arm64
-            asset: ace-tool-rs_Linux_aarch64.tar.gz
-            binary: ace-tool-rs
+            asset: ace-ctx_Linux_aarch64.tar.gz
+            binary: ace-ctx
           - platform: darwin-universal
-            asset: ace-tool-rs_Darwin_universal.tar.gz
-            binary: ace-tool-rs
+            asset: ace-ctx_Darwin_universal.tar.gz
+            binary: ace-ctx
           - platform: win32-x64
-            asset: ace-tool-rs_Windows_x86_64.zip
-            binary: ace-tool-rs.exe
+            asset: ace-ctx_Windows_x86_64.zip
+            binary: ace-ctx.exe
           - platform: win32-arm64
-            asset: ace-tool-rs_Windows_aarch64.zip
-            binary: ace-tool-rs.exe
+            asset: ace-ctx_Windows_aarch64.zip
+            binary: ace-ctx.exe
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -285,7 +285,7 @@ jobs:
 
       - name: Update version and publish
         run: |
-          cd npm/ace-tool-rs
+          cd npm/ace-ctx
           VERSION=${GITHUB_REF#refs/tags/v}
           npm version $VERSION --no-git-tag-version --allow-same-version
           # Sync optionalDependencies versions

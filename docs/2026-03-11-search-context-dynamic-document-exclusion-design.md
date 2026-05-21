@@ -10,7 +10,7 @@
 
 ## 1. 背景
 
-当前 `ace-tool-rs` 的 `search_context` 能力已经可用，但在真实检索中存在一个明显问题：
+当前 `ace-ctx` 的 `search_context` 能力已经可用，但在真实检索中存在一个明显问题：
 
 - 源码类结果通常能命中
 - `README.md`、`README-zh-CN.md`、`*.txt` 这类文档也会进入候选

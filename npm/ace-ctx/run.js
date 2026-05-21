@@ -5,12 +5,12 @@ const path = require("path");
 const os = require("os");
 
 const PLATFORMS = {
-  "darwin-x64": "@alistar.max/ace-tool-rs-darwin-universal",
-  "darwin-arm64": "@alistar.max/ace-tool-rs-darwin-universal",
-  "linux-x64": "@alistar.max/ace-tool-rs-linux-x64",
-  "linux-arm64": "@alistar.max/ace-tool-rs-linux-arm64",
-  "win32-x64": "@alistar.max/ace-tool-rs-win32-x64",
-  "win32-arm64": "@alistar.max/ace-tool-rs-win32-arm64",
+  "darwin-x64": "@alistar.max/ace-ctx-darwin-universal",
+  "darwin-arm64": "@alistar.max/ace-ctx-darwin-universal",
+  "linux-x64": "@alistar.max/ace-ctx-linux-x64",
+  "linux-arm64": "@alistar.max/ace-ctx-linux-arm64",
+  "win32-x64": "@alistar.max/ace-ctx-win32-x64",
+  "win32-arm64": "@alistar.max/ace-ctx-win32-arm64",
 };
 
 function getBinaryPath() {
@@ -25,14 +25,14 @@ function getBinaryPath() {
 
   try {
     const pkgPath = require.resolve(`${pkgName}/package.json`);
-    const binName = process.platform === "win32" ? "ace-tool-rs.exe" : "ace-tool-rs";
+    const binName = process.platform === "win32" ? "ace-ctx.exe" : "ace-ctx";
     return path.join(path.dirname(pkgPath), "bin", binName);
   } catch (e) {
     console.error(`Failed to find platform package: ${pkgName}`);
     console.error("This may happen if npm failed to install the optional dependency.");
     console.error("");
     console.error("Try reinstalling:");
-    console.error("  npm install @alistar.max/ace-tool-rs");
+    console.error("  npm install @alistar.max/ace-ctx");
     console.error("");
     console.error("Or install the platform package directly:");
     console.error(`  npm install ${pkgName}`);
@@ -60,7 +60,7 @@ function run() {
   });
 
   child.on("error", (error) => {
-    console.error(`Failed to start ace-tool-rs: ${error.message}`);
+    console.error(`Failed to start ace-ctx: ${error.message}`);
     process.exit(1);
   });
 

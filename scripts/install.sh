@@ -2,9 +2,9 @@
 
 set -e
 
-REPO="CodingOX/ace-tool-rs"
-INSTALL_DIR="/opt/ace-tool-rs"
-BINARY_NAME="ace-tool-rs"
+REPO="CodingOX/ace-ctx"
+INSTALL_DIR="/opt/ace-ctx"
+BINARY_NAME="ace-ctx"
 
 # Function to detect platform and architecture
 detect_platform() {
@@ -60,12 +60,12 @@ get_latest_version() {
 # Function to download and install binary from GitHub Release
 download_from_github() {
 	local version=$1
-	local asset_name="ace-tool-rs_${PLATFORM}_${ASSET_ARCH}.${EXTENSION}"
+	local asset_name="ace-ctx_${PLATFORM}_${ASSET_ARCH}.${EXTENSION}"
 	local download_url="https://github.com/${REPO}/releases/download/v${version}/${asset_name}"
 	local temp_dir=$(mktemp -d)
 	local archive_path="${temp_dir}/${asset_name}"
 
-	echo "Downloading ace-tool-rs v${version} from GitHub Release..."
+	echo "Downloading ace-ctx v${version} from GitHub Release..."
 	echo "URL: ${download_url}"
 
 	# Download the archive
@@ -106,38 +106,38 @@ download_from_github() {
 	echo "${INSTALL_DIR}/${BINARY_NAME}"
 }
 
-# check the first argument is the path to the ace-tool-rs binary
+# check the first argument is the path to the ace-ctx binary
 if [ -n "$1" ]; then
-	ACE_TOOL_RS_PATH="$1"
+	ACE_CTX_PATH="$1"
 fi
 
-if [ -z "$ACE_TOOL_RS_PATH" ]; then
-	# Get the absolute path of the ace-tool-rs binary
-	# if current os is Darwin, use $(pwd)/ace-tool-rs
+if [ -z "$ACE_CTX_PATH" ]; then
+	# Get the absolute path of the ace-ctx binary
+	# if current os is Darwin, use $(pwd)/ace-ctx
 	if [ "$(uname)" == "Darwin" ]; then
-		ACE_TOOL_RS_PATH=$(pwd)/ace-tool-rs
+		ACE_CTX_PATH=$(pwd)/ace-ctx
 	fi
-	if [ ! -f "$ACE_TOOL_RS_PATH" ]; then
-		ACE_TOOL_RS_PATH=$(pwd)/target/release/ace-tool-rs
-		if [ ! -f "$ACE_TOOL_RS_PATH" ]; then
+	if [ ! -f "$ACE_CTX_PATH" ]; then
+		ACE_CTX_PATH=$(pwd)/target/release/ace-ctx
+		if [ ! -f "$ACE_CTX_PATH" ]; then
 			# Check if binary exists in /opt directory
 			if [ -f "${INSTALL_DIR}/${BINARY_NAME}" ]; then
-				ACE_TOOL_RS_PATH="${INSTALL_DIR}/${BINARY_NAME}"
+				ACE_CTX_PATH="${INSTALL_DIR}/${BINARY_NAME}"
 			else
 				# Download from GitHub Release
-				echo "ace-tool-rs binary not found locally, downloading from GitHub Release..."
+				echo "ace-ctx binary not found locally, downloading from GitHub Release..."
 				detect_platform
 				VERSION=$(get_latest_version) || exit 1
-				ACE_TOOL_RS_PATH=$(download_from_github "$VERSION") || exit 1
+				ACE_CTX_PATH=$(download_from_github "$VERSION") || exit 1
 			fi
 		fi
 	fi
 fi
 
-# Add the ace-tool-rs server to the Claude Code MCP registry
+# Add the ace-ctx server to the Claude Code MCP registry
 CLAUDE_PATH=$(which claude)
 if [ -f "$CLAUDE_PATH" ]; then
-	"$CLAUDE_PATH" mcp add-json ace-tool -s user '{"type":"stdio","command":"ace-tool-rs","args":["--base-url",  "https://api.example.com/",  "--token", "ace_xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"],"env":{}}'
+	"$CLAUDE_PATH" mcp add-json ace-ctx -s user '{"type":"stdio","command":"ace-ctx","args":["--base-url",  "https://api.example.com/",  "--token", "ace_xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"],"env":{}}'
 else
 	echo "Error: claude not found"
 	exit 1

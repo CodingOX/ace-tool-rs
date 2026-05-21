@@ -352,8 +352,9 @@ impl McpServer {
                 logging: None,
             },
             server_info: ServerInfo {
-                name: "ace-tool".to_string(),
-                version: "0.2.0".to_string(),
+                name: "ace-ctx".to_string(),
+                // 统一当前服务的版本号为 0.2.3
+                version: "0.2.3".to_string(),
             },
         };
 

@@ -13,9 +13,9 @@ const crypto = require("crypto");
 // Crucially, we ensure the wrapper ONLY writes to stderr (logs, extraction output)
 // so that the Rust binary's stdout (MCP JSON-RPC) is the only thing on stdout.
 
-const PACKAGE_NAME = "ace-tool-rs";
+const PACKAGE_NAME = "ace-ctx";
 const REPO_OWNER = "CodingOX";
-const REPO_NAME = "ace-tool-rs";
+const REPO_NAME = "ace-ctx";
 const MAX_REDIRECTS = 10;
 const REQUEST_TIMEOUT = 60000; // 60 seconds
 const MAX_RETRIES = 3;
@@ -92,21 +92,21 @@ function getAssetName() {
   switch (platform) {
     case "darwin":
       // macOS uses universal binary (supports both x64 and arm64)
-      return "ace-tool-rs_Darwin_universal.tar.gz";
+      return "ace-ctx_Darwin_universal.tar.gz";
     case "linux":
       if (arch === "x64") {
-        return "ace-tool-rs_Linux_x86_64.tar.gz";
+        return "ace-ctx_Linux_x86_64.tar.gz";
       } else if (arch === "arm64") {
-        return "ace-tool-rs_Linux_aarch64.tar.gz";
+        return "ace-ctx_Linux_aarch64.tar.gz";
       }
       throw new Error(
         `Unsupported architecture: ${arch} on Linux. Only x64 and arm64 are supported.`
       );
     case "win32":
       if (arch === "x64") {
-        return "ace-tool-rs_Windows_x86_64.zip";
+        return "ace-ctx_Windows_x86_64.zip";
       } else if (arch === "arm64") {
-        return "ace-tool-rs_Windows_aarch64.zip";
+        return "ace-ctx_Windows_aarch64.zip";
       }
       throw new Error(
         `Unsupported architecture: ${arch} on Windows. Only x64 and arm64 are supported.`
@@ -509,14 +509,14 @@ async function downloadAndExtract(cacheDir) {
   } catch (error) {
     console.error(`Failed to download ${PACKAGE_NAME}: ${error.message}`);
     console.error("");
-    console.error("You can install manually:");
+    console.error("  You can install manually:");
     console.error(
-      "  1. Download from https://github.com/CodingOX/ace-tool-rs/releases"
+      "  1. Download from https://github.com/CodingOX/ace-ctx/releases"
     );
     console.error(`  2. Place binary at: ${binaryPath}`);
     console.error("");
     console.error("Or install via cargo:");
-    console.error("  cargo install ace-tool-rs");
+    console.error("  cargo install ace-ctx");
     process.exit(1);
   } finally {
     releaseLock(lockPath);

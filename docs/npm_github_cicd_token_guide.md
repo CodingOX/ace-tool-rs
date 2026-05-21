@@ -28,7 +28,7 @@
    > **推荐选择 "Classic Token"** 以获得最稳健的 CI/CD 兼容性。
 
 4. **配置 Token 属性**：
-   * **Name**: 起一个有辨识度的名字，例如 `ace-tool-rs-github-cicd`。
+   * **Name**: 起一个有辨识度的名字，例如 `ace-ctx-github-cicd`。
    * **Type**: ⚠️ **必须选择 "Automation" 选项**！
      > [!WARNING]
      > * **Automation**：专为无交互式 CI/CD 设计。即使您的账户开启了 2FA 强制验证，此 Token 也可以在发布时免除 2FA 校验。
@@ -51,7 +51,7 @@
 2. **选择 Token 类型**：选择 **Personal access tokens** -> **Tokens (classic)**。
 3. **创建新 Token**：点击右上角 **Generate new token** -> 选择 **Generate new token (classic)**。
 4. **配置权限范围 (Scopes)**：
-   * **Note**: 起个名字，例如 `ace-tool-rs-cicd-pusher`。
+   * **Note**: 起个名字，例如 `ace-ctx-cicd-pusher`。
    * **Expiration**: 推荐选择 `No expiration` (无过期时间，方便长期自动化运行) 或设定一个较长的时间。
    * **Select Scopes (勾选权限)**：
      * `[x] repo` (完整控制仓库：包含代码提交、Tag 上传、Release 发布)
@@ -66,7 +66,7 @@
 
 ### 📝 详细操作步骤：
 
-1. 打开您的 GitHub 仓库页面（例如 `CodingOX/ace-tool-rs`）。
+1. 打开您的 GitHub 仓库页面（例如 `CodingOX/ace-ctx`）。
 2. 点击顶部导航栏的 **Settings** (设置) 按钮。
 3. 在左侧边栏中，展开 **Secrets and variables** -> 选择 **Actions**。
 4. 点击右上角的 **New repository secret** 按钮来依次添加这两个 Token：
@@ -118,7 +118,7 @@ jobs:
       # 发布我们的主 Scoped 包
       - name: Publish Scoped Package
         run: |
-          cd npm/ace-tool-rs
+          cd npm/ace-ctx
           npm publish --access public
 ```
 
@@ -126,6 +126,6 @@ jobs:
 
 ## 💡 终极自检与排错 checklist
 
-* **NPM 403 Forbidden 报错**：如果您发布的是 Scoped 包（例如 `@alistar.max/ace-tool-rs`），首次发布时 NPM 默认会将其判定为私有包。由于免费账号无法发布私有作用域包，必须显式在发布命令后附加参数 `--access public`（如上面的示例所示），否则会被拒绝发布。
+* **NPM 403 Forbidden 报错**：如果您发布的是 Scoped 包（例如 `@alistar.max/ace-ctx`），首次发布时 NPM 默认会将其判定为私有包。由于免费账号无法发布私有作用域包，必须显式在发布命令后附加参数 `--access public`（如上面的示例所示），否则会被拒绝发布。
 * **NPM 2FA 拦截错误**：请二次确认在 NPM 创建 Token 时选择的是 **"Automation"** 类型的 Classic Token。如果是 `Publish` 类型的 Token，发布流水线依然会被挂起并报错。
 * **GitHub Actions 推送 tag 权限被拒**：请确保在 Actions 流程中使用 `secrets.GH_TOKEN` 进行 checkout，否则默认的 GITHUB_TOKEN 可能会因为权限受限而拒绝推送版本发布产物。

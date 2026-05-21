@@ -1,9 +1,9 @@
-# ace-tool-rs npm shim (Legacy)
+# ace-ctx npm shim (Legacy)
 
 > **Note**: This directory contains the legacy "download-on-run" shim which is now marked as `private: true`.
-> The actual published package is in `npm/ace-tool-rs/` which uses the modern `optionalDependencies` approach.
+> The actual published package is in `npm/ace-ctx/` which uses the modern `optionalDependencies` approach.
 
-This npm package provides a convenient way to install and run `ace-tool-rs` via npm/npx.
+This npm package provides a convenient way to install and run `ace-ctx` via npm/npx.
 
 ## How It Works
 
@@ -13,11 +13,11 @@ This is a **shim package** that automatically downloads the appropriate pre-buil
 
 ```bash
 # Run directly with npx (no installation needed)
-npx @alistar.max/ace-tool-rs --base-url <API_URL> --token <AUTH_TOKEN>
+npx @alistar.max/ace-ctx --base-url <API_URL> --token <AUTH_TOKEN>
 
 # Or install globally
-npm install -g @alistar.max/ace-tool-rs
-ace-tool-rs --base-url <API_URL> --token <AUTH_TOKEN>
+npm install -g @alistar.max/ace-ctx
+ace-ctx --base-url <API_URL> --token <AUTH_TOKEN>
 ```
 
 ## Supported Platforms
@@ -34,9 +34,9 @@ Downloaded binaries are cached in platform-specific directories:
 
 | Platform | Cache Path |
 |----------|------------|
-| Windows  | `%LOCALAPPDATA%\ace-tool-rs\<version>\` |
-| macOS    | `~/Library/Caches/ace-tool-rs/<version>/` |
-| Linux    | `$XDG_CACHE_HOME/ace-tool-rs/<version>/` or `~/.cache/ace-tool-rs/<version>/` |
+| Windows  | `%LOCALAPPDATA%\ace-ctx\<version>\` |
+| macOS    | `~/Library/Caches/ace-ctx/<version>/` |
+| Linux    | `$XDG_CACHE_HOME/ace-ctx/<version>/` or `~/.cache/ace-ctx/<version>/` |
 
 The cache is versioned, so upgrading the npm package will download a new binary matching that version.
 
@@ -53,21 +53,21 @@ The cache is versioned, so upgrading the npm package will download a new binary 
 
 ## Troubleshooting
 
-### Download Fails
+## Download Fails
 
 If automatic download fails, you can:
 
-1. **Manual download**: Download the appropriate binary from [GitHub Releases](https://github.com/CodingOX/ace-tool-rs/releases) and place it in the cache directory.
+1. **Manual download**: Download the appropriate binary from [GitHub Releases](https://github.com/CodingOX/ace-ctx/releases) and place it in the cache directory.
 
 2. **Install via Cargo**: If you have Rust installed:
    ```bash
-   cargo install ace-tool-rs
+   cargo install ace-ctx
    ```
 
 3. **Set GITHUB_TOKEN**: If you're hitting GitHub API rate limits:
    ```bash
    export GITHUB_TOKEN=your_github_token
-   npx @alistar.max/ace-tool-rs --base-url <API_URL> --token <AUTH_TOKEN>
+   npx @alistar.max/ace-ctx --base-url <API_URL> --token <AUTH_TOKEN>
    ```
 
 ### Binary Not Found After Extraction
@@ -86,6 +86,6 @@ Ensure your system has the required extraction tools:
 
 ## License
 
-This package is part of [ace-tool-rs](https://github.com/CodingOX/ace-tool-rs) and is licensed under GPL-3.0.
+This package is part of [ace-ctx](https://github.com/CodingOX/ace-ctx) and is licensed under GPL-3.0.
 
 For commercial use, please contact missdeer@gmail.com for licensing options.

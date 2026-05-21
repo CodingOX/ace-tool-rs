@@ -1,4 +1,4 @@
-# ace-tool-rs
+# ace-ctx
 
 English | [简体中文](README-zh-CN.md)
 
@@ -6,7 +6,7 @@ A high-performance CLI codebase context engine and MCP (Model Context Protocol) 
 
 ## Overview
 
-ace-tool-rs is a Rust implementation of a codebase context engine that enables AI assistants to search and understand codebases using natural language queries. It provides:
+ace-ctx is a Rust implementation of a codebase context engine that enables AI assistants to search and understand codebases using natural language queries. It provides:
 
 - **Real-time codebase indexing** - Automatically indexes your project files and keeps the index up-to-date
 - **Semantic search** - Find relevant code using natural language descriptions
@@ -29,10 +29,10 @@ ace-tool-rs is a Rust implementation of a codebase context engine that enables A
 
 ### Quick Start (Recommended)
 
-The easiest way to install and run ace-tool-rs is via npx:
+The easiest way to install and run ace-ctx is via npx:
 
 ```bash
-npx @alistar.max/ace-tool-rs --base-url <API_URL> --token <AUTH_TOKEN>
+npx @alistar.max/ace-ctx --base-url <API_URL> --token <AUTH_TOKEN>
 ```
 
 This will automatically download the appropriate binary for your platform and run it.
@@ -46,13 +46,13 @@ This will automatically download the appropriate binary for your platform and ru
 
 ```bash
 # Clone the repository
-git clone https://github.com/CodingOX/ace-tool-rs.git
-cd ace-tool-rs
+git clone https://github.com/CodingOX/ace-ctx.git
+cd ace-ctx
 
 # Build release binary
 cargo build --release
 
-# The binary will be at target/release/ace-tool-rs
+# The binary will be at target/release/ace-ctx
 ```
 
 ### Requirements
@@ -63,28 +63,28 @@ cargo build --release
 
 ## Usage
 
-This project now features deep support for a **CLI (Command Line Interface) Standalone Mode**! This allows `ace-tool-rs` to run not only as a standard background MCP server but also as a blazing-fast standalone terminal tool invoked directly by developers or AI agents.
+This project now features deep support for a **CLI (Command Line Interface) Standalone Mode**! This allows `ace-ctx` to run not only as a standard background MCP server but also as a blazing-fast standalone terminal tool invoked directly by developers or AI agents.
 
 ### 💻 Core CLI Standalone Modes
 
-Once your `--base-url` and `--token` are configured, you can run `ace-tool-rs` in three powerful standalone modes directly from your terminal:
+Once your `--base-url` and `--token` are configured, you can run `ace-ctx` in three powerful standalone modes directly from your terminal:
 
 #### 1. Standalone Codebase Search Mode (Search Mode - Recommended🌟)
 Perform a natural language query against your codebase. It prints highly relevant code snippets, complete with syntax highlighting and line numbers, directly to stdout. AI agents love this mode!
 ```bash
-ace-tool-rs --search "How does user login connect to the database?" --base-url <API_URL> --token <AUTH_TOKEN>
+ace-ctx --search "How does user login connect to the database?" --base-url <API_URL> --token <AUTH_TOKEN>
 ```
 
 #### 2. Incremental Indexing Mode (Index-Only Mode)
 Scan the current project directory, extract changes, upload incremental index vectors, and **exit immediately upon completion** without running any long-lived background process. This is ideal for Git Commit Hooks or CI automation pipelines.
 ```bash
-ace-tool-rs --index-only --base-url <API_URL> --token <AUTH_TOKEN>
+ace-ctx --index-only --base-url <API_URL> --token <AUTH_TOKEN>
 ```
 
 #### 3. In-Terminal Prompt Enhancement Mode (Enhance-Prompt Mode)
 Quickly rewrite, optimize, and enrich your prompt with local codebase context right in the terminal.
 ```bash
-ace-tool-rs --enhance-prompt "Refactor user authentication module" --base-url <API_URL> --token <AUTH_TOKEN>
+ace-ctx --enhance-prompt "Refactor user authentication module" --base-url <API_URL> --token <AUTH_TOKEN>
 ```
 
 ---
@@ -112,7 +112,7 @@ ace-tool-rs --enhance-prompt "Refactor user authentication module" --base-url <A
 
 #### Environment Variables Quick Config
 
-To avoid typing the verbose `--base-url` and `--token` arguments on every run, you can configure them as system environment variables, which `ace-tool-rs` will auto-detect:
+To avoid typing the verbose `--base-url` and `--token` arguments on every run, you can configure them as system environment variables, which `ace-ctx` will auto-detect:
 
 ```bash
 # macOS/Linux (Zsh/Bash)
@@ -120,7 +120,7 @@ export ACE_BASE_URL="https://api.example.com"
 export ACE_TOKEN="your-token-here"
 
 # After that, you can run simply:
-ace-tool-rs --search "find user module"
+ace-ctx --search "find user module"
 ```
 
 ---
@@ -134,12 +134,12 @@ The skill definition is stored in the repository at:
 👉 [skills/ace-code-search-expert/SKILL.md](skills/ace-code-search-expert/SKILL.md)
 
 #### 2. What does it do?
-This Skill acts as a **"pre-context narrow pipe"** for AI agents. When a user asks an agent questions about the codebase, the agent (if the Skill is imported) will automatically catch the intent, run the `ace-tool-rs --search` CLI in the background, and perform a precise search. The agent then feeds the highly reliable code snippets back as a condensed context, which:
+This Skill acts as a **"pre-context narrow pipe"** for AI agents. When a user asks an agent questions about the codebase, the agent (if the Skill is imported) will automatically catch the intent, run the `ace-ctx --search` CLI in the background, and perform a precise search. The agent then feeds the highly reliable code snippets back as a condensed context, which:
 * Saves a massive amount of Token consumption and context window space.
 * Drastically reduces model hallucination caused by lack of localized code context.
 
 #### 3. How to import it for your AI Agent
-1. **Install the CLI Globally**: Ensure `ace-tool-rs` is globally executable in your shell `PATH`.
+1. **Install the CLI Globally**: Ensure `ace-ctx` is globally executable in your shell `PATH`.
 2. **Set Environment Variables**: Configure `ACE_BASE_URL` and `ACE_TOKEN` globally on your machine.
 3. **Import the Skill**: Copy the full path of [skills/ace-code-search-expert/SKILL.md](skills/ace-code-search-expert/SKILL.md) and import it into your agent workspace's skill definition directory!
 
@@ -161,7 +161,7 @@ This Skill acts as a **"pre-context narrow pipe"** for AI agents. When a user as
 
 ```bash
 # Run with debug logging
-RUST_LOG=debug ace-tool-rs --base-url https://api.example.com --token your-token-here
+RUST_LOG=debug ace-ctx --base-url https://api.example.com --token your-token-here
 ```
 
 ### Transport Framing
@@ -170,7 +170,7 @@ By default, the server auto-detects line-delimited JSON vs. LSP `Content-Length`
 If your client requires a specific mode, force it:
 
 ```bash
-ace-tool-rs --base-url https://api.example.com --token your-token-here --transport lsp
+ace-ctx --base-url https://api.example.com --token your-token-here --transport lsp
 ```
 
 ## MCP Integration
@@ -180,9 +180,9 @@ ace-tool-rs --base-url https://api.example.com --token your-token-here --transpo
 Add to your Codex config file (typically `~/.codex/config.toml`):
 
 ```toml
-[mcp_servers.ace-tool]
+[mcp_servers.ace-ctx]
 command = "npx"
-args = ["@alistar.max/ace-tool-rs", "--base-url", "https://api.example.com", "--token", "your-token-here", "--transport", "lsp"]
+args = ["@alistar.max/ace-ctx", "--base-url", "https://api.example.com", "--token", "your-token-here", "--transport", "lsp"]
 env = { RUST_LOG = "info" }
 startup_timeout_ms = 60000
 ```
@@ -197,10 +197,10 @@ Add to your Claude Desktop configuration file:
 ```json
 {
   "mcpServers": {
-    "ace-tool": {
+    "ace-ctx": {
       "command": "npx",
       "args": [
-        "@alistar.max/ace-tool-rs",
+        "@alistar.max/ace-ctx",
         "--base-url", "https://api.example.com",
         "--token", "your-token-here"
       ]
@@ -216,10 +216,10 @@ For OpenCode or similar agent-style clients, the smoothest setup is usually to d
 ```json
 {
   "mcpServers": {
-    "ace-tool": {
+    "ace-ctx": {
       "command": "npx",
       "args": [
-        "@alistar.max/ace-tool-rs",
+        "@alistar.max/ace-ctx",
         "--base-url", "https://api.example.com",
         "--token", "your-token-here",
         "--no-webbrowser-enhance-prompt"
@@ -244,7 +244,7 @@ If you prefer manual review in a browser, omit `--no-webbrowser-enhance-prompt` 
 Run command like below:
 
 ```bash
-claude mcp add-json ace-tool --scope user '{"type":"stdio","command":"npx","args":["@alistar.max/ace-tool-rs","--base-url","https://api.example.com/","--token","your-token-here"],"env":{}}'
+claude mcp add-json ace-ctx --scope user '{"type":"stdio","command":"npx","args":["@alistar.max/ace-ctx","--base-url","https://api.example.com/","--token","your-token-here"],"env":{}}'
 ```
 
 Modify `~/.claude/settings.json` to add permission for the tools:
@@ -254,8 +254,8 @@ $ cat settings.local.json
 {
   "permissions": {
     "allow": [
-      "mcp__ace-tool__search_context",
-      "mcp__ace-tool__enhance_prompt"
+      "mcp__ace-ctx__search_context",
+      "mcp__ace-ctx__enhance_prompt"
     ]
   }
 }
@@ -293,7 +293,7 @@ Enhance user prompts by combining codebase context and conversation history to g
 
 **If you want a fully in-terminal / non-browser flow:**
 
-- Start ace-tool-rs with `--no-webbrowser-enhance-prompt`.
+- Start ace-ctx with `--no-webbrowser-enhance-prompt`.
 - In that mode, `enhance_prompt` returns the API result directly to the MCP client without opening a browser.
 - This mode is usually the best fit for agent-style tools such as OpenCode when you want the enhanced prompt to flow straight back into the conversation.
 
@@ -340,18 +340,18 @@ The tool supports multiple backend endpoints, controlled by the `PROMPT_ENHANCER
 export PROMPT_ENHANCER_ENDPOINT=claude
 export PROMPT_ENHANCER_BASE_URL=https://api.anthropic.com
 export PROMPT_ENHANCER_TOKEN=your-anthropic-api-key
-ace-tool-rs --base-url https://api.example.com --token your-token
+ace-ctx --base-url https://api.example.com --token your-token
 
 # For --enhance-prompt mode with third-party endpoints, --base-url and --token are optional
 export PROMPT_ENHANCER_ENDPOINT=claude
 export PROMPT_ENHANCER_BASE_URL=https://api.anthropic.com
 export PROMPT_ENHANCER_TOKEN=your-anthropic-api-key
-ace-tool-rs --enhance-prompt "Add user authentication"
+ace-ctx --enhance-prompt "Add user authentication"
 
 # If you also want to inject search_context before third-party enhancement,
 # you must additionally provide ACE search credentials via --base-url/--token
 export PROMPT_ENHANCER_INCLUDE_SEARCH_CONTEXT=1
-ace-tool-rs \
+ace-ctx \
   --base-url https://api.example.com \
   --token your-ace-token \
   --enhance-prompt "Add user authentication"
@@ -365,7 +365,7 @@ export PROMPT_ENHANCER_ENDPOINT=codex
 export PROMPT_ENHANCER_BASE_URL=https://api.openai.com
 export PROMPT_ENHANCER_TOKEN=your-openai-api-key
 # Optional: export PROMPT_ENHANCER_MODEL=codex-mini
-ace-tool-rs --enhance-prompt "Refactor authentication logic"
+ace-ctx --enhance-prompt "Refactor authentication logic"
 ```
 
 **Using `search_context` with third-party enhancement:**
@@ -425,7 +425,7 @@ Both `.gitignore` and `.aceignore` patterns are merged, with `.aceignore` taking
 ## Architecture
 
 ```
-ace-tool-rs/
+ace-ctx/
 ├── src/
 │   ├── main.rs          # Entry point and CLI
 │   ├── lib.rs           # Library exports
@@ -500,13 +500,13 @@ You can override individual parameters while keeping others adaptive:
 
 ```bash
 # Fixed concurrency, adaptive timeout
-ace-tool-rs --base-url ... --token ... --upload-concurrency 4
+ace-ctx --base-url ... --token ... --upload-concurrency 4
 
 # Fixed timeout, adaptive concurrency
-ace-tool-rs --base-url ... --token ... --upload-timeout 60
+ace-ctx --base-url ... --token ... --upload-timeout 60
 
 # Disable adaptive entirely (use static heuristic)
-ace-tool-rs --base-url ... --token ... --no-adaptive
+ace-ctx --base-url ... --token ... --no-adaptive
 ```
 
 ## Project Scale Strategies
@@ -578,7 +578,7 @@ Free for personal projects, educational purposes, open source projects, and non-
 
 ### Commercial / Workplace Use - Commercial License Required
 
-**If you use ace-tool-rs in a commercial environment, workplace, or for any commercial purpose, you must obtain a commercial license.**
+**If you use ace-ctx in a commercial environment, workplace, or for any commercial purpose, you must obtain a commercial license.**
 
 This includes but is not limited to:
 - Using the software at work (any organization)
@@ -606,4 +606,4 @@ Contributions are welcome! Please feel free to submit a Pull Request.
 
 ## Star History
 
-[![Star History Chart](https://starchart.cc/CodingOX/ace-tool-rs.svg)](https://starchart.cc/CodingOX/ace-tool-rs)
+[![Star History Chart](https://starchart.cc/CodingOX/ace-ctx.svg)](https://starchart.cc/CodingOX/ace-ctx)

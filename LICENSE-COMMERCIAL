@@ -1,12 +1,12 @@
-# Commercial License for ace-tool-rs
+# Commercial License for ace-ctx
 
 ## Overview
 
-ace-tool-rs is dual-licensed software. While it is available under the GPL v3 License for non-commercial and personal use, **commercial and workplace use requires a separate commercial license**.
+ace-ctx is dual-licensed software. While it is available under the GPL v3 License for non-commercial and personal use, **commercial and workplace use requires a separate commercial license**.
 
 ## When You Need a Commercial License
 
-A commercial license is required if you use ace-tool-rs in any of the following contexts:
+A commercial license is required if you use ace-ctx in any of the following contexts:
 
 - **Workplace Use**: Using the software at work, regardless of whether the work is for-profit or non-profit
 - **Commercial Products**: Integrating the software into commercial products or services
@@ -27,7 +27,7 @@ The GPL v3 License applies (free use) for:
 
 Commercial licensees receive:
 
-- Permission to use ace-tool-rs in commercial and workplace environments
+- Permission to use ace-ctx in commercial and workplace environments
 - Priority support and assistance
 - Peace of mind regarding licensing compliance
 

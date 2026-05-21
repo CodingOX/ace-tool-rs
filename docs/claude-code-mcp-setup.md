@@ -1,12 +1,12 @@
-# Claude Code 配置 ACE-Tool MCP 指南
+# Claude Code 配置 ACE-Ctx MCP 指南
 
-本文档说明如何在 Claude Code 中配置 ace-tool-rs 作为 MCP 服务。
+本文档说明如何在 Claude Code 中配置 ace-ctx 作为 MCP 服务。
 
 ---
 
 ## 前置条件
 
-1. 已编译并部署 `ace-tool-rs` 二进制文件
+1. 已编译并部署 `ace-ctx` 二进制文件
 2. 有可用的 API 服务端点（或使用第三方端点）
 
 ---
@@ -16,12 +16,12 @@
 ### 1. 确认二进制文件位置
 
 ```bash
-which ace-tool-rs
+which ace-ctx
 # 或
-ls ~/.local/bin/ace-tool-rs
+ls ~/.local/bin/ace-ctx
 ```
 
-假设路径为：`/Users/username/.local/bin/ace-tool-rs`
+假设路径为：`/Users/username/.local/bin/ace-ctx`
 
 ### 2. 编辑 Claude Code 配置文件
 
@@ -47,8 +47,8 @@ touch ~/.claude/settings.json
 ```json
 {
   "mcpServers": {
-    "ace-tool": {
-      "command": "/Users/username/.local/bin/ace-tool-rs",
+    "ace-ctx": {
+      "command": "/Users/username/.local/bin/ace-ctx",
       "args": [
         "--base-url", "https://your-api-server.com",
         "--token", "your-auth-token"
@@ -63,8 +63,8 @@ touch ~/.claude/settings.json
 ```json
 {
   "mcpServers": {
-    "ace-tool": {
-      "command": "/Users/username/.local/bin/ace-tool-rs",
+    "ace-ctx": {
+      "command": "/Users/username/.local/bin/ace-ctx",
       "args": [],
       "env": {
         "ACE_BASE_URL": "https://your-api-server.com",
@@ -80,8 +80,8 @@ touch ~/.claude/settings.json
 ```json
 {
   "mcpServers": {
-    "ace-tool": {
-      "command": "/Users/username/.local/bin/ace-tool-rs",
+    "ace-ctx": {
+      "command": "/Users/username/.local/bin/ace-ctx",
       "args": [],
       "env": {
         "PROMPT_ENHANCER_ENDPOINT": "claude",
@@ -104,8 +104,8 @@ touch ~/.claude/settings.json
 ```json
 {
   "mcpServers": {
-    "ace-tool": {
-      "command": "/Users/username/.local/bin/ace-tool-rs",
+    "ace-ctx": {
+      "command": "/Users/username/.local/bin/ace-ctx",
       "args": [],
       "env": {
         "ACE_BASE_URL": "https://api.example.com",
@@ -139,7 +139,7 @@ touch ~/.claude/settings.json
 ## 可用命令行参数
 
 ```bash
-ace-tool-rs [OPTIONS]
+ace-ctx [OPTIONS]
 
 Options:
       --base-url <BASE_URL>           API 服务地址
@@ -173,7 +173,7 @@ Options:
 /mcp
 ```
 
-应该看到 `ace-tool` 服务及其提供的工具：
+应该看到 `ace-ctx` 服务及其提供的工具：
 - `search_context` - 语义代码检索
 - `enhance_prompt` - Prompt 增强（如已配置）
 
@@ -192,8 +192,8 @@ Options:
 ### MCP 服务未加载
 
 1. 检查配置文件语法：`cat ~/.claude/settings.json | jq .`
-2. 检查二进制文件权限：`ls -la ~/.local/bin/ace-tool-rs`
-3. 手动运行测试：`~/.local/bin/ace-tool-rs --help`
+2. 检查二进制文件权限：`ls -la ~/.local/bin/ace-ctx`
+3. 手动运行测试：`~/.local/bin/ace-ctx --help`
 
 ### 认证失败
 

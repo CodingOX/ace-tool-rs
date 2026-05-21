@@ -1,18 +1,18 @@
 {
-  "name": "ace-tool-rs",
-  "version": "0.2.0",
+  "name": "ace-ctx",
+  "version": "0.2.3",
   "private": true,
   "description": "CLI tool and MCP server for codebase indexing, semantic search, and prompt enhancement",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/CodingOX/ace-tool-rs.git"
+    "url": "git+https://github.com/CodingOX/ace-ctx.git"
   },
   "author": "missdeer",
   "license": "GPL-3.0-only OR LicenseRef-Commercial",
   "bugs": {
-    "url": "https://github.com/CodingOX/ace-tool-rs/issues"
+    "url": "https://github.com/CodingOX/ace-ctx/issues"
   },
-  "homepage": "https://github.com/CodingOX/ace-tool-rs#readme",
+  "homepage": "https://github.com/CodingOX/ace-ctx#readme",
   "keywords": [
     "mcp",
     "codebase",
@@ -23,7 +23,7 @@
     "cli"
   ],
   "bin": {
-    "ace-tool-rs": "run.js"
+    "ace-ctx": "run.js"
   },
   "files": [
     "run.js"

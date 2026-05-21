@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Overview
 
-**ace-tool-rs** — 基于 Rust 的 MCP 服务器，提供代码库索引、语义搜索和提示增强功能。以 npm 包形式分发，通过平台特定的可选依赖提供预构建二进制文件。
+**ace-ctx** — 基于 Rust 的 MCP 服务器，提供代码库索引、语义搜索和提示增强功能。以 npm 包形式分发，通过平台特定的可选依赖提供预构建二进制文件。
 
 ## Build & Test Commands
 
