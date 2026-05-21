@@ -46,7 +46,7 @@ This will automatically download the appropriate binary for your platform and ru
 
 ```bash
 # Clone the repository
-git clone https://github.com/missdeer/ace-tool-rs.git
+git clone https://github.com/CodingOX/ace-tool-rs.git
 cd ace-tool-rs
 
 # Build release binary
@@ -606,4 +606,4 @@ Contributions are welcome! Please feel free to submit a Pull Request.
 
 ## Star History
 
-[![Star History Chart](https://starchart.cc/missdeer/ace-tool-rs.svg)](https://starchart.cc/missdeer/ace-tool-rs)
+[![Star History Chart](https://starchart.cc/CodingOX/ace-tool-rs.svg)](https://starchart.cc/CodingOX/ace-tool-rs)

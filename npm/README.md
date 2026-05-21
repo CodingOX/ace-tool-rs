@@ -57,7 +57,7 @@ The cache is versioned, so upgrading the npm package will download a new binary 
 
 If automatic download fails, you can:
 
-1. **Manual download**: Download the appropriate binary from [GitHub Releases](https://github.com/missdeer/ace-tool-rs/releases) and place it in the cache directory.
+1. **Manual download**: Download the appropriate binary from [GitHub Releases](https://github.com/CodingOX/ace-tool-rs/releases) and place it in the cache directory.
 
 2. **Install via Cargo**: If you have Rust installed:
    ```bash
@@ -86,6 +86,6 @@ Ensure your system has the required extraction tools:
 
 ## License
 
-This package is part of [ace-tool-rs](https://github.com/missdeer/ace-tool-rs) and is licensed under GPL-3.0.
+This package is part of [ace-tool-rs](https://github.com/CodingOX/ace-tool-rs) and is licensed under GPL-3.0.
 
 For commercial use, please contact missdeer@gmail.com for licensing options.

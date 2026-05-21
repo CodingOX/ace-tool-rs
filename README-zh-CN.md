@@ -46,7 +46,7 @@ npx @alistar.max/ace-tool-rs --base-url <API_URL> --token <AUTH_TOKEN>
 
 ```bash
 # 克隆仓库
-git clone https://github.com/missdeer/ace-tool-rs.git
+git clone https://github.com/CodingOX/ace-tool-rs.git
 cd ace-tool-rs
 
 # 构建发布版本
@@ -606,4 +606,4 @@ cargo clippy
 
 ## Star 历史
 
-[![Star History Chart](https://starchart.cc/missdeer/ace-tool-rs.svg)](https://starchart.cc/missdeer/ace-tool-rs)
+[![Star History Chart](https://starchart.cc/CodingOX/ace-tool-rs.svg)](https://starchart.cc/CodingOX/ace-tool-rs)
