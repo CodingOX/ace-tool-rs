@@ -75,7 +75,7 @@ touch ~/.claude/settings.json
 }
 ```
 
-#### 方式三：使用第三方端点（Claude/OpenAI/Gemini）
+#### 方式三：使用第三方端点（Claude/OpenAI/Gemini/Codex）
 
 ```json
 {
@@ -85,7 +85,9 @@ touch ~/.claude/settings.json
       "args": [],
       "env": {
         "PROMPT_ENHANCER_ENDPOINT": "claude",
-        "ANTHROPIC_API_KEY": "sk-ant-xxx"
+        "PROMPT_ENHANCER_BASE_URL": "https://api.anthropic.com",
+        "PROMPT_ENHANCER_TOKEN": "sk-ant-xxx",
+        "PROMPT_ENHANCER_MODEL": "claude-sonnet-4-5"
       }
     }
   }
@@ -96,6 +98,7 @@ touch ~/.claude/settings.json
 - `claude` - 使用 Anthropic Claude API
 - `openai` - 使用 OpenAI API
 - `gemini` - 使用 Google Gemini API
+- `codex` - 使用 OpenAI Codex (Responses API)
 
 ---
 
@@ -111,7 +114,9 @@ touch ~/.claude/settings.json
         "ACE_BASE_URL": "https://api.example.com",
         "ACE_TOKEN": "your-token-here",
         "PROMPT_ENHANCER_ENDPOINT": "claude",
-        "ANTHROPIC_API_KEY": "sk-ant-xxx"
+        "PROMPT_ENHANCER_BASE_URL": "https://api.anthropic.com",
+        "PROMPT_ENHANCER_TOKEN": "sk-ant-xxx",
+        "PROMPT_ENHANCER_MODEL": "claude-sonnet-4-5"
       }
     }
   }
@@ -126,13 +131,12 @@ touch ~/.claude/settings.json
 |----------|------|------|
 | `ACE_BASE_URL` | API 服务地址 | `https://api.example.com` |
 | `ACE_TOKEN` | 认证令牌 | `your-token` |
-| `PROMPT_ENHANCER_ENDPOINT` | Prompt 增强端点 | `claude` / `openai` / `gemini` |
-| `PROMPT_ENHANCER_BASE_URL` | 自定义增强服务地址 | `https://enhancer.example.com` |
-| `PROMPT_ENHANCER_TOKEN` | 增强服务令牌 | `enhancer-token` |
-| `PROMPT_ENHANCER_MODEL` | 增强服务模型 | `claude-sonnet-4-6` |
-| `ANTHROPIC_API_KEY` | Claude API 密钥 | `sk-ant-xxx` |
-| `OPENAI_API_KEY` | OpenAI API 密钥 | `sk-xxx` |
-| `GEMINI_API_KEY` | Gemini API 密钥 | `xxx` |
+| `PROMPT_ENHANCER_ENDPOINT` | Prompt 增强端点 | `new` / `old` / `claude` / `openai` / `gemini` / `codex` |
+| `PROMPT_ENHANCER_BASE_URL` | 第三方 API 服务地址 | `https://api.anthropic.com` |
+| `PROMPT_ENHANCER_TOKEN` | 第三方 API 认证令牌 | `sk-ant-xxx` |
+| `PROMPT_ENHANCER_MODEL` | 第三方 API 模型名 | `claude-sonnet-4-5` |
+| `PROMPT_ENHANCER_INCLUDE_SEARCH_CONTEXT` | 为第三方端点注入 search_context | `1` / `true` |
+| `PROMPT_ENHANCER` | 设为 `disabled` 禁用 enhance_prompt 工具 | `disabled` |
 
 ---
 
@@ -142,19 +146,23 @@ touch ~/.claude/settings.json
 ace-ctx [OPTIONS]
 
 Options:
-      --base-url <BASE_URL>           API 服务地址
-      --token <TOKEN>                 认证令牌
-      --transport <TRANSPORT>         传输协议: auto, lsp, line [default: auto]
-      --max-lines-per-blob <N>        每个 blob 最大行数 [default: 800]
-      --upload-timeout <SECONDS>      上传超时秒数
-      --upload-concurrency <N>        上传并发数
-      --retrieval-timeout <SECONDS>   检索超时秒数 [default: 60]
-      --no-adaptive                   禁用自适应策略
-      --no-webbrowser-enhance-prompt  禁用浏览器打开增强结果
-      --force-xdg-open                WSL 环境强制使用 xdg-open
-      --webui-addr <ADDR>             Web UI 绑定地址
-      --index-only                    仅索引模式
-      --enhance-prompt <PROMPT>       增强 prompt 并输出
+      --base-url <BASE_URL>              API 服务地址 [env: ACE_BASE_URL]
+      --token <TOKEN>                    认证令牌 [env: ACE_TOKEN]
+      --transport <TRANSPORT>            传输协议: auto, lsp, line [default: auto]
+      --max-lines-per-blob <N>           每个 blob 最大行数 [default: 800]
+      --upload-timeout <SECONDS>         上传超时秒数 (default: adaptive)
+      --upload-concurrency <N>           上传并发数 (default: adaptive)
+      --retrieval-timeout <SECONDS>      检索超时秒数 [default: 60]
+      --no-adaptive                      禁用自适应策略
+      --no-webbrowser-enhance-prompt     禁用浏览器打开增强结果
+      --force-xdg-open                   WSL 环境强制使用 xdg-open
+      --webui-addr <ADDR:PORT>           Web UI 绑定地址 (e.g., "127.0.0.1:8754")
+      --index-only                       仅索引模式
+      --enhance-prompt <PROMPT>          增强 prompt 并输出
+      --search <QUERY>                   语义搜索代码库
+      --include-document-files           搜索时包含文档文件
+  -V, --version                          显示版本号
+  -h, --help                             显示帮助
 ```
 
 ---
