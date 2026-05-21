@@ -32,11 +32,16 @@ description: >
 
 ---
 
-## 核心工作流
-
-### 搜索决策
-- **Direct Search（首选）**：用户提示包含明确的开发意图或代码特征时，直接使用 `--search` 进行语义检索
-- **Conditional Enhancement**：仅在输入极度简短/抽象时先用 `--enhance-prompt` 强化 query，再执行检索
+### 搜索决策与文档过滤规则
+- **Direct Search（首选）**：用户提示包含明确的开发意图或代码特征时，直接使用 `--search` 进行语义检索。
+- **Conditional Enhancement**：仅在输入极度简短/抽象时先用 `--enhance-prompt` 强化 query，再执行检索。
+- **默认排除文档（源码优先）**：语义搜索默认排除了 `.md`, `.txt`, `README`, `CHANGELOG` 等非源码的文档文件，以避免语义噪音并优先匹配源代码。
+  - **启用文档搜索**：仅在用户明确表示要检索文档内容时（例如：“在文档中搜索...”、“查找关于...的 markdown 说明”），方可启用文档文件检索。
+  - **命令行 (CLI) 开启方式**：运行 `--search` 时附带 `--include-document-files` 标志：
+    ```bash
+    ace-ctx --search "your query" --include-document-files
+    ```
+  - **MCP 服务开启方式**：调用 `search_context` 工具时，将 `exclude_document_files` 设为 `false`。
 
 ---
 

@@ -71,8 +71,17 @@ Once your `--base-url` and `--token` are configured, you can run `ace-ctx` in th
 
 #### 1. Standalone Codebase Search Mode (Search Mode - Recommended🌟)
 Perform a natural language query against your codebase. It prints highly relevant code snippets, complete with syntax highlighting and line numbers, directly to stdout. AI agents love this mode!
+
+> [!NOTE]
+> **Source Code First (Default):** Semantic search prioritizes source code files by default. Standard document files (such as `.md`, `.txt`, `README`, `CHANGELOG`, etc.) are ignored to prevent noise. If you explicitly want to include document files in your search, add the `--include-document-files` flag.
+
 ```bash
 ace-ctx --search "How does user login connect to the database?" --base-url <API_URL> --token <AUTH_TOKEN>
+```
+
+To search including document files:
+```bash
+ace-ctx --search "How to deploy this app" --base-url <API_URL> --token <AUTH_TOKEN> --include-document-files
 ```
 
 #### 2. Incremental Indexing Mode (Index-Only Mode)
@@ -98,6 +107,7 @@ ace-ctx --enhance-prompt "Refactor user authentication module" --base-url <API_U
 | `--base-url` | API base URL for the indexing service (optional for `--enhance-prompt` with third-party endpoints) |
 | `--token` | Authentication token for API access (optional for `--enhance-prompt` with third-party endpoints) |
 | `--search` | **[NEW]** Execute a natural language semantic query, print matched code snippets to stdout, and exit immediately |
+| `--include-document-files` | **[NEW]** Explicitly include document files (e.g. `.md`, `.txt`, `README`, `CHANGELOG`) in search results (default: `false`, i.e., documents are excluded by default for source code priority) |
 | `--index-only` | **[NEW]** Perform an incremental indexing upload of the current directory, and exit immediately without starting the MCP server |
 | `--enhance-prompt` | **[NEW]** Enhance the input prompt, output the result to stdout, and exit immediately |
 | `--no-webbrowser-enhance-prompt` | Disable local web browser review/interaction for `enhance_prompt`, returning the result directly to the terminal |
@@ -273,6 +283,7 @@ Search the codebase using natural language queries.
 |-----------|------|----------|-------------|
 | `project_root_path` | string | Yes | Absolute path to the project root directory |
 | `query` | string | Yes | Natural language description of the code you're looking for |
+| `exclude_document_files` | boolean | No | Whether to exclude document files (md, txt, etc.) (default: `true`, prioritizing source code) |
 
 **Example queries:**
 

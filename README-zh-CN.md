@@ -71,8 +71,17 @@ cargo build --release
 
 #### 1. 终端直接语义检索模式 (Search Mode - 推荐🌟)
 对当前项目代码库进行自然语言检索，直接在终端输出高度匹配的、经过高亮和行号整理的代码切片。AI 智能体非常喜欢这个模式！
+
+> [!NOTE]
+> **源码优先（默认排除文档）：** 语义检索默认采用源码优先策略，会自动排除 `.md`, `.txt`, `README`, `CHANGELOG` 等文档文件，避免文档带来的噪音干扰。如果您的检索确实需要包含文档，请显式附带 `--include-document-files` 参数。
+
 ```bash
 ace-ctx --search "用户登录时是如何连接数据库的？" --base-url <API_URL> --token <AUTH_TOKEN>
+```
+
+若要同时检索文档内容：
+```bash
+ace-ctx --search "如何部署和安装本项目" --base-url <API_URL> --token <AUTH_TOKEN> --include-document-files
 ```
 
 #### 2. 项目代码单次索引模式 (Index-Only Mode)
@@ -98,6 +107,7 @@ ace-ctx --enhance-prompt "重构用户认证模块" --base-url <API_URL> --token
 | `--base-url` | 索引服务的 API 基础 URL（使用第三方端点的 `--enhance-prompt` 模式时可选） |
 | `--token` | API 访问的认证令牌（使用第三方端点的 `--enhance-prompt` 模式时可选） |
 | `--search` | **[全新]** 执行一次自然语言语义检索并将匹配的代码切片输出到标准输出，然后立即退出 |
+| `--include-document-files` | **[全新]** 显式地将文档文件（如 `.md`, `.txt`, `README`, `CHANGELOG` 等）包含在检索结果中（默认：`false`，即默认源码优先，排除文档） |
 | `--index-only` | **[全新]** 仅对当前目录建立增量索引并上传，完成后立即退出（不启动 MCP 服务器） |
 | `--enhance-prompt` | **[全新]** 增强输入的提示词并将结果输出到标准输出，然后立即退出 |
 | `--no-webbrowser-enhance-prompt` | 禁用 `enhance_prompt` 时的本地 Web 浏览器交互，直接在终端返回增强结果 |
@@ -273,6 +283,7 @@ $ cat settings.local.json
 |------|------|------|------|
 | `project_root_path` | string | 是 | 项目根目录的绝对路径 |
 | `query` | string | 是 | 你要查找的代码的自然语言描述 |
+| `exclude_document_files` | boolean | 否 | 是否排除文档文件（md, txt等）（默认：`true`，即默认启用源码优先，排除文档） |
 
 **查询示例：**
 
