@@ -32,7 +32,7 @@ ace-tool-rs is a Rust implementation of a codebase context engine that enables A
 The easiest way to install and run ace-tool-rs is via npx:
 
 ```bash
-npx ace-tool-rs --base-url <API_URL> --token <AUTH_TOKEN>
+npx @alistar.max/ace-tool-rs --base-url <API_URL> --token <AUTH_TOKEN>
 ```
 
 This will automatically download the appropriate binary for your platform and run it.
@@ -182,7 +182,7 @@ Add to your Codex config file (typically `~/.codex/config.toml`):
 ```toml
 [mcp_servers.ace-tool]
 command = "npx"
-args = ["ace-tool-rs", "--base-url", "https://api.example.com", "--token", "your-token-here", "--transport", "lsp"]
+args = ["@alistar.max/ace-tool-rs", "--base-url", "https://api.example.com", "--token", "your-token-here", "--transport", "lsp"]
 env = { RUST_LOG = "info" }
 startup_timeout_ms = 60000
 ```
@@ -200,7 +200,7 @@ Add to your Claude Desktop configuration file:
     "ace-tool": {
       "command": "npx",
       "args": [
-        "ace-tool-rs",
+        "@alistar.max/ace-tool-rs",
         "--base-url", "https://api.example.com",
         "--token", "your-token-here"
       ]
@@ -219,7 +219,7 @@ For OpenCode or similar agent-style clients, the smoothest setup is usually to d
     "ace-tool": {
       "command": "npx",
       "args": [
-        "ace-tool-rs",
+        "@alistar.max/ace-tool-rs",
         "--base-url", "https://api.example.com",
         "--token", "your-token-here",
         "--no-webbrowser-enhance-prompt"
@@ -244,7 +244,7 @@ If you prefer manual review in a browser, omit `--no-webbrowser-enhance-prompt` 
 Run command like below:
 
 ```bash
-claude mcp add-json ace-tool --scope user '{"type":"stdio","command":"npx","args":["ace-tool-rs","--base-url","https://api.example.com/","--token","your-token-here"],"env":{}}'
+claude mcp add-json ace-tool --scope user '{"type":"stdio","command":"npx","args":["@alistar.max/ace-tool-rs","--base-url","https://api.example.com/","--token","your-token-here"],"env":{}}'
 ```
 
 Modify `~/.claude/settings.json` to add permission for the tools:
