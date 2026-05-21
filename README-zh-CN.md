@@ -2,7 +2,7 @@
 
 [English](README.md) | 简体中文
 
-一个高性能的 MCP（模型上下文协议）服务器，用于代码库索引、语义搜索和提示词增强，使用 Rust 编写。
+一个高性能的 CLI 代码库上下文引擎与 MCP（模型上下文协议）服务器，用于代码库索引、语义搜索和提示词增强，使用 Rust 编写。
 
 ## 概述
 
@@ -131,7 +131,7 @@ ace-tool-rs --search "查找用户模块"
 
 #### 1. 技能包存放路径
 该 Skill 文件存放于项目中的：
-👉 [skills/ace-code-search-expert/SKILL.md](file:///Users/alistar/code-all/ai/ace-tool-rs/skills/ace-code-search-expert/SKILL.md)
+👉 [skills/ace-code-search-expert/SKILL.md](skills/ace-code-search-expert/SKILL.md)
 
 #### 2. 它能干什么？
 该 Skill 能够作为智能体的 **“前置上下文收窄管道”**。当用户对智能体发出关于代码库的疑问时，智能体一旦导入此 Skill，便会自动捕获意图，在后台静默调用全局的 `ace-tool-rs --search` CLI 命令，快速对代码库进行精准查找。智能体会把提炼出的 100% 靠谱的代码切片作为精简上下文，再输入大模型进行后续的生成。这极大地：
@@ -141,7 +141,7 @@ ace-tool-rs --search "查找用户模块"
 #### 3. 如何为您的 Agent 导入它？
 1. **安装全局 CLI**：确保您本机的 `PATH` 路径中全局可用 `ace-tool-rs` CLI 工具。
 2. **设置环境变量**：配置系统全局变量 `ACE_BASE_URL` 和 `ACE_TOKEN`。
-3. **导入技能**：将 [skills/ace-code-search-expert/SKILL.md](file:///Users/alistar/code-all/ai/ace-tool-rs/skills/ace-code-search-expert/SKILL.md) 文件的完整路径复制，并导入到您的 AI 智能体工作空间的 Skill 定义目录中即可！
+3. **导入技能**：将 [skills/ace-code-search-expert/SKILL.md](skills/ace-code-search-expert/SKILL.md) 文件的完整路径复制，并导入到您的 AI 智能体工作空间的 Skill 定义目录中即可！
 
 ---
 

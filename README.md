@@ -2,7 +2,7 @@
 
 English | [简体中文](README-zh-CN.md)
 
-A high-performance MCP (Model Context Protocol) server for codebase indexing, semantic search, and prompt enhancement, written in Rust.
+A high-performance CLI codebase context engine and MCP (Model Context Protocol) server for codebase indexing, semantic search, and prompt enhancement, written in Rust.
 
 ## Overview
 
@@ -131,7 +131,7 @@ If you are using next-generation agentic coding frameworks or IDEs that support 
 
 #### 1. Skill Location
 The skill definition is stored in the repository at:
-👉 [skills/ace-code-search-expert/SKILL.md](file:///Users/alistar/code-all/ai/ace-tool-rs/skills/ace-code-search-expert/SKILL.md)
+👉 [skills/ace-code-search-expert/SKILL.md](skills/ace-code-search-expert/SKILL.md)
 
 #### 2. What does it do?
 This Skill acts as a **"pre-context narrow pipe"** for AI agents. When a user asks an agent questions about the codebase, the agent (if the Skill is imported) will automatically catch the intent, run the `ace-tool-rs --search` CLI in the background, and perform a precise search. The agent then feeds the highly reliable code snippets back as a condensed context, which:
@@ -141,7 +141,7 @@ This Skill acts as a **"pre-context narrow pipe"** for AI agents. When a user as
 #### 3. How to import it for your AI Agent
 1. **Install the CLI Globally**: Ensure `ace-tool-rs` is globally executable in your shell `PATH`.
 2. **Set Environment Variables**: Configure `ACE_BASE_URL` and `ACE_TOKEN` globally on your machine.
-3. **Import the Skill**: Copy the full path of [skills/ace-code-search-expert/SKILL.md](file:///Users/alistar/code-all/ai/ace-tool-rs/skills/ace-code-search-expert/SKILL.md) and import it into your agent workspace's skill definition directory!
+3. **Import the Skill**: Copy the full path of [skills/ace-code-search-expert/SKILL.md](skills/ace-code-search-expert/SKILL.md) and import it into your agent workspace's skill definition directory!
 
 ---
 

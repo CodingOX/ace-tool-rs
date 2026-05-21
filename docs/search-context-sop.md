@@ -37,7 +37,7 @@
 **示例调用**：
 ```json
 {
-  "project_root_path": "/Users/alistar/projects/myapp",
+  "project_root_path": "/Users/username/projects/myapp",
   "query": "数据库连接池是如何初始化和管理的？关键词：pool, connection, init"
 }
 ```
@@ -51,7 +51,7 @@
 **示例调用**：
 ```json
 {
-  "project_root_path": "/Users/alistar/projects/myapp",
+  "project_root_path": "/Users/username/projects/myapp",
   "query": "错误处理机制是如何设计的？",
   "exclude_document_files": true
 }
@@ -70,7 +70,7 @@
 **示例调用**：
 ```json
 {
-  "project_root_path": "/Users/alistar/projects/myapp",
+  "project_root_path": "/Users/username/projects/myapp",
   "query": "核心业务逻辑的实现",
   "exclude_globs": ["tests/**", "**/*_test.rs", "**/mock/**", "docs/**"]
 }
@@ -85,7 +85,7 @@
 **示例调用**：
 ```json
 {
-  "project_root_path": "/Users/alistar/projects/myapp",
+  "project_root_path": "/Users/username/projects/myapp",
   "query": "API 路由定义在哪里？",
   "exclude_extensions": [".json", ".yaml", ".yml", ".toml"]
 }
@@ -98,7 +98,7 @@
 **示例调用**：
 ```json
 {
-  "project_root_path": "/Users/alistar/projects/myapp",
+  "project_root_path": "/Users/username/projects/myapp",
   "query": "核心算法实现",
   "exclude_document_files": true,
   "exclude_extensions": [".rs"],
@@ -182,7 +182,7 @@ No matching files found after applying filter criteria.
 
 ```json
 {
-  "project_root_path": "/Users/alistar/projects/webapp",
+  "project_root_path": "/Users/username/projects/webapp",
   "query": "用户登录后 session 是如何创建和存储的？关键词：session, create, store, login",
   "exclude_document_files": true,
   "exclude_globs": ["**/test/**", "**/__tests__/**"]
@@ -193,7 +193,7 @@ No matching files found after applying filter criteria.
 
 ```json
 {
-  "project_root_path": "/Users/alistar/projects/microservice",
+  "project_root_path": "/Users/username/projects/microservice",
   "query": "服务间 RPC 通信是如何实现的？关键词：rpc, client, server, call",
   "exclude_document_files": true
 }
@@ -203,7 +203,7 @@ No matching files found after applying filter criteria.
 
 ```json
 {
-  "project_root_path": "/Users/alistar/projects/datapipeline",
+  "project_root_path": "/Users/username/projects/datapipeline",
   "query": "数据批处理时的并发控制是如何实现的？关键词：batch, concurrency, parallel, limit",
   "exclude_globs": ["benchmarks/**", "examples/**"]
 }

@@ -21,7 +21,7 @@ which ace-tool-rs
 ls ~/.local/bin/ace-tool-rs
 ```
 
-假设路径为：`/Users/alistar/.local/bin/ace-tool-rs`
+假设路径为：`/Users/username/.local/bin/ace-tool-rs`
 
 ### 2. 编辑 Claude Code 配置文件
 
@@ -48,7 +48,7 @@ touch ~/.claude/settings.json
 {
   "mcpServers": {
     "ace-tool": {
-      "command": "/Users/alistar/.local/bin/ace-tool-rs",
+      "command": "/Users/username/.local/bin/ace-tool-rs",
       "args": [
         "--base-url", "https://your-api-server.com",
         "--token", "your-auth-token"
@@ -64,7 +64,7 @@ touch ~/.claude/settings.json
 {
   "mcpServers": {
     "ace-tool": {
-      "command": "/Users/alistar/.local/bin/ace-tool-rs",
+      "command": "/Users/username/.local/bin/ace-tool-rs",
       "args": [],
       "env": {
         "ACE_BASE_URL": "https://your-api-server.com",
@@ -81,7 +81,7 @@ touch ~/.claude/settings.json
 {
   "mcpServers": {
     "ace-tool": {
-      "command": "/Users/alistar/.local/bin/ace-tool-rs",
+      "command": "/Users/username/.local/bin/ace-tool-rs",
       "args": [],
       "env": {
         "PROMPT_ENHANCER_ENDPOINT": "claude",
@@ -105,7 +105,7 @@ touch ~/.claude/settings.json
 {
   "mcpServers": {
     "ace-tool": {
-      "command": "/Users/alistar/.local/bin/ace-tool-rs",
+      "command": "/Users/username/.local/bin/ace-tool-rs",
       "args": [],
       "env": {
         "ACE_BASE_URL": "https://api.example.com",
