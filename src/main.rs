@@ -310,19 +310,19 @@ mod tests {
         env::remove_var("ACE_TOKEN");
 
         // Test without environment variables and without CLI arguments
-        let args = Args::try_parse_from(&["ace-tool", "--search", "test"]).unwrap();
+        let args = Args::try_parse_from(["ace-tool", "--search", "test"]).unwrap();
         assert_eq!(args.base_url, None);
         assert_eq!(args.token, None);
 
         // Test with environment variables only
         env::set_var("ACE_BASE_URL", "https://env.example.com");
         env::set_var("ACE_TOKEN", "env-token");
-        let args = Args::try_parse_from(&["ace-tool", "--search", "test"]).unwrap();
+        let args = Args::try_parse_from(["ace-tool", "--search", "test"]).unwrap();
         assert_eq!(args.base_url, Some("https://env.example.com".to_string()));
         assert_eq!(args.token, Some("env-token".to_string()));
 
         // Test environment variables overridden by CLI arguments
-        let args = Args::try_parse_from(&[
+        let args = Args::try_parse_from([
             "ace-tool",
             "--search",
             "test",
