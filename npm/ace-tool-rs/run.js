@@ -5,12 +5,12 @@ const path = require("path");
 const os = require("os");
 
 const PLATFORMS = {
-  "darwin-x64": "@ace-tool-rs/darwin-universal",
-  "darwin-arm64": "@ace-tool-rs/darwin-universal",
-  "linux-x64": "@ace-tool-rs/linux-x64",
-  "linux-arm64": "@ace-tool-rs/linux-arm64",
-  "win32-x64": "@ace-tool-rs/win32-x64",
-  "win32-arm64": "@ace-tool-rs/win32-arm64",
+  "darwin-x64": "@alistar.max/ace-tool-rs-darwin-universal",
+  "darwin-arm64": "@alistar.max/ace-tool-rs-darwin-universal",
+  "linux-x64": "@alistar.max/ace-tool-rs-linux-x64",
+  "linux-arm64": "@alistar.max/ace-tool-rs-linux-arm64",
+  "win32-x64": "@alistar.max/ace-tool-rs-win32-x64",
+  "win32-arm64": "@alistar.max/ace-tool-rs-win32-arm64",
 };
 
 function getBinaryPath() {
