@@ -11,9 +11,18 @@ pub const DEFAULT_DOCUMENT_EXTENSIONS: &[&str] = &[
 
 /// Default document filenames (without extension) to exclude when `exclude_document_files` is true
 pub const DEFAULT_DOCUMENT_FILENAMES: &[&str] = &[
-    "README", "CHANGELOG", "TODO", "ROADMAP",
-    "LICENSE", "LICENCE", "AUTHORS", "CONTRIBUTORS",
-    "HISTORY", "COPYING", "NEWS", "CHANGES",
+    "README",
+    "CHANGELOG",
+    "TODO",
+    "ROADMAP",
+    "LICENSE",
+    "LICENCE",
+    "AUTHORS",
+    "CONTRIBUTORS",
+    "HISTORY",
+    "COPYING",
+    "NEWS",
+    "CHANGES",
 ];
 
 /// Search filter options for excluding entries from search results
@@ -325,7 +334,10 @@ mod tests {
     fn test_get_filename() {
         assert_eq!(get_filename("README"), Some("readme".to_string()));
         assert_eq!(get_filename("src/README"), Some("readme".to_string()));
-        assert_eq!(get_filename("docs/CHANGELOG"), Some("changelog".to_string()));
+        assert_eq!(
+            get_filename("docs/CHANGELOG"),
+            Some("changelog".to_string())
+        );
         assert_eq!(get_filename("README.md"), Some("readme".to_string()));
         assert_eq!(get_filename("src/main.rs"), Some("main".to_string()));
         assert_eq!(get_filename(".gitignore"), Some(".gitignore".to_string()));
