@@ -1,4 +1,4 @@
-//! ace-tool - MCP server for codebase indexing and semantic search
+//! ace-ctx - MCP server for codebase indexing and semantic search
 
 use ace_tool::config::{Config, ConfigOptions};
 use ace_tool::enhancer::prompt_enhancer::{get_enhancer_endpoint, PromptEnhancer};
@@ -20,7 +20,7 @@ enum TransportArg {
 }
 
 #[derive(Parser, Debug)]
-#[command(name = "ace-tool")]
+#[command(name = "ace-ctx")]
 #[command(about = "CLI tool and MCP server for codebase indexing and semantic search")]
 #[command(version)]
 struct Args {
@@ -279,7 +279,7 @@ async fn main() -> Result<()> {
         }
     }
 
-    info!("Starting ace-tool MCP server");
+    info!("Starting ace-ctx MCP server");
 
     let transport_mode = match args.transport {
         TransportArg::Auto => None,
@@ -310,20 +310,20 @@ mod tests {
         env::remove_var("ACE_TOKEN");
 
         // Test without environment variables and without CLI arguments
-        let args = Args::try_parse_from(["ace-tool", "--search", "test"]).unwrap();
+        let args = Args::try_parse_from(["ace-ctx", "--search", "test"]).unwrap();
         assert_eq!(args.base_url, None);
         assert_eq!(args.token, None);
 
         // Test with environment variables only
         env::set_var("ACE_BASE_URL", "https://env.example.com");
         env::set_var("ACE_TOKEN", "env-token");
-        let args = Args::try_parse_from(["ace-tool", "--search", "test"]).unwrap();
+        let args = Args::try_parse_from(["ace-ctx", "--search", "test"]).unwrap();
         assert_eq!(args.base_url, Some("https://env.example.com".to_string()));
         assert_eq!(args.token, Some("env-token".to_string()));
 
         // Test environment variables overridden by CLI arguments
         let args = Args::try_parse_from([
-            "ace-tool",
+            "ace-ctx",
             "--search",
             "test",
             "--base-url",
