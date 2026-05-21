@@ -2,7 +2,7 @@
 name = "ace-tool-rs"
 version = "0.2.0"
 edition = "2021"
-description = "MCP server for codebase indexing, semantic search, and prompt enhancement"
+description = "CLI tool and MCP server for codebase indexing, semantic search, and prompt enhancement"
 license = "GPL-3.0-only OR LicenseRef-Commercial"
 authors = ["missdeer"]
 repository = "https://github.com/CodingOX/ace-tool-rs.git"
@@ -28,7 +28,7 @@ bincode = "1"
 reqwest = { version = "0.12", default-features = false, features = ["json", "gzip", "brotli", "deflate", "http2", "charset", "rustls-tls-native-roots"] }
 
 # CLI argument parsing
-clap = { version = "4", features = ["derive"] }
+clap = { version = "4", features = ["derive", "env"] }
 
 # Cryptography (SHA-256)
 sha2 = "0.10"

@@ -21,15 +21,15 @@ enum TransportArg {
 
 #[derive(Parser, Debug)]
 #[command(name = "ace-tool")]
-#[command(about = "MCP server for codebase indexing and semantic search")]
+#[command(about = "CLI tool and MCP server for codebase indexing and semantic search")]
 #[command(version)]
 struct Args {
     /// API base URL for the indexing service
-    #[arg(long)]
+    #[arg(long, env = "ACE_BASE_URL")]
     base_url: Option<String>,
 
     /// Authentication token
-    #[arg(long)]
+    #[arg(long, env = "ACE_TOKEN")]
     token: Option<String>,
 
     /// Transport framing: auto, lsp, line
@@ -296,4 +296,47 @@ async fn main() -> Result<()> {
     }
 
     Ok(())
+}
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+    use std::env;
+
+    #[test]
+    fn test_args_env_fallback() {
+        // Clear variables to ensure clean test state
+        env::remove_var("ACE_BASE_URL");
+        env::remove_var("ACE_TOKEN");
+
+        // Test without environment variables and without CLI arguments
+        let args = Args::try_parse_from(&["ace-tool", "--search", "test"]).unwrap();
+        assert_eq!(args.base_url, None);
+        assert_eq!(args.token, None);
+
+        // Test with environment variables only
+        env::set_var("ACE_BASE_URL", "https://env.example.com");
+        env::set_var("ACE_TOKEN", "env-token");
+        let args = Args::try_parse_from(&["ace-tool", "--search", "test"]).unwrap();
+        assert_eq!(args.base_url, Some("https://env.example.com".to_string()));
+        assert_eq!(args.token, Some("env-token".to_string()));
+
+        // Test environment variables overridden by CLI arguments
+        let args = Args::try_parse_from(&[
+            "ace-tool",
+            "--search",
+            "test",
+            "--base-url",
+            "https://cli.example.com",
+            "--token",
+            "cli-token",
+        ])
+        .unwrap();
+        assert_eq!(args.base_url, Some("https://cli.example.com".to_string()));
+        assert_eq!(args.token, Some("cli-token".to_string()));
+
+        // Clean up
+        env::remove_var("ACE_BASE_URL");
+        env::remove_var("ACE_TOKEN");
+    }
 }
