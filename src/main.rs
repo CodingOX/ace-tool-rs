@@ -131,10 +131,11 @@ async fn main() -> Result<()> {
         )?;
 
         let manager = IndexManager::new(config, project_root)?;
-        let mut filters = SearchFilterOptions::from_args(&ace_tool::tools::search_context::SearchContextArgs {
-            exclude_document_files: Some(!args.include_document_files),
-            ..Default::default()
-        });
+        let mut filters =
+            SearchFilterOptions::from_args(&ace_tool::tools::search_context::SearchContextArgs {
+                exclude_document_files: Some(!args.include_document_files),
+                ..Default::default()
+            });
         filters.compile_globs()?;
 
         let result = manager.search_context(query, &filters).await?;
@@ -354,7 +355,9 @@ mod tests {
         assert!(!args.include_document_files);
 
         // Explicit true
-        let args = Args::try_parse_from(["ace-ctx", "--search", "test", "--include-document-files"]).unwrap();
+        let args =
+            Args::try_parse_from(["ace-ctx", "--search", "test", "--include-document-files"])
+                .unwrap();
         assert!(args.include_document_files);
     }
 }
