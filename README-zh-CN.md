@@ -111,5 +111,7 @@ cargo build --release
 
 欢迎提交 Pull Request 和 Issue！
 - 原项目贡献者：[missdeer](https://github.com/missdeer)
+- 特别感谢来自 [LINUX DO](https://linux.do/) 社区朋友们的支持与反馈。
 
 [![Star History Chart](https://starchart.cc/CodingOX/ace-ctx.svg)](https://starchart.cc/CodingOX/ace-ctx)
+

@@ -111,5 +111,7 @@ This project is dual-licensed:
 
 Contributions are welcome! Please feel free to submit a Pull Request.
 - Original author and contributor: [missdeer](https://github.com/missdeer)
+- Thanks for the support and feedback from the friends at [LINUX DO](https://linux.do/).
 
 [![Star History Chart](https://starchart.cc/CodingOX/ace-ctx.svg)](https://starchart.cc/CodingOX/ace-ctx)
+
